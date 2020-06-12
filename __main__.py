@@ -1,38 +1,34 @@
-import sys
 import ctypes
+import sys
 import pygame
 
 from pygame.locals import *
 
 user32 = ctypes.windll.user32
-screen_size = user32.GetSystemMetrics(0), user32.GetSystemMetrics(1)
-# kekw XD
-SCREEN_WIDTH = 1280
-SCREEN_HEIGHT = 720
 
-# class Player(pygame.sprite.Sprite):
-#     def __init__(self):
-#         super(Player, self).__init__()
-#         self.surf = pygame.Surface((75, 25))
-#         self.surf.fill((255, 255, 255))
-#         self.rect = self.surf.get_rect()
+SCREEN_WIDTH = user32.GetSystemMetrics(0)
+SCREEN_HEIGHT = user32.GetSystemMetrics(1)
 
-pygame.init()
+pygame.init() # actual game
 
-screen = pygame.display.set_mode(screen_size)
-# player = Player()
-RUNNING = True
+screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN) # screen size and stuffs
+
+
+RUNNING = True # running variable - will be set to false when x is pressed, quitting the program
 
 while RUNNING:
     for event in pygame.event.get():
         if event.type == KEYDOWN: # detect key presses
             if event.key == K_ESCAPE: # detect esc
                 RUNNING = False # quit
-        if event.type == QUIT: # press quit bitch
+        if event.type == QUIT: # press quit
             RUNNING = False # kills stuffs :D
 
-    screen.fill((25, 25, 25))
-    # screen.blit(player.surf, (SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
+
+
+    screen.fill((255, 255, 255))
+    pygame.draw.rect(screen, (0, 0, 0), [20, 20, 20, 20])
+    pygame.display.update()
 
     pygame.display.flip() # display the display to the display
 
