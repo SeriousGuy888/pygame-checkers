@@ -25,7 +25,7 @@ black_square = (135, 89, 19)
 square_size = math.floor(SCREEN_HEIGHT / 10)
 SQUARE_DIMENSION = 8
 
-# red down; black up
+# * red down; black up
 
 class Piece(pygame.sprite.Sprite):
     def __init__(self, team, x, y):
@@ -62,7 +62,9 @@ class Piece(pygame.sprite.Sprite):
         for loop_piece in pieces:
             if loop_piece.x == self.x + square_size:
                 can_move_right = False
-                if 
+                if loop_piece.team != self.team:
+                    pass
+                    # TODO: somehow figure out if this can jump
 
             elif loop_piece == self.x - square_size:
                 can_move_left = False
@@ -74,12 +76,27 @@ class Piece(pygame.sprite.Sprite):
             if can_move_left:
                 pygame.draw.circle(screen, (127, 127, 127), (self.x - square_size, y_move))
         
-        
-        
     def render(self):
-        screen.blit(pygame.image.load(self.image), (self.x * square_size, self.y * square_size))
+        screen.blit(pygame.transform.scale(pygame.image.load(self.image), (square_size, square_size)), (self.x * square_size, self.y * square_size))
 
-pieces = [Piece(0, 1, 1)]
+class Square(pygame.sprite.Sprite):
+    def __init__(self, square_colour, x, y):
+        self.square_colour == square_colour
+        self.x = x
+        self.y = y
+    def render(self):
+        pygame.draw.rect(screen, square_colour, [
+            square_size * self.x,
+            square_size * self.y,
+            square_size,
+            square_size
+        ])
+
+
+pieces = []
+squares = []
+dogshit = ["dog", "shit", "this is an easter egg that no one will find unless there's dog in 🌈"]
+
 def main():
     print("")
     for x in range(1, 3):
@@ -88,7 +105,7 @@ def main():
     for x in range(6, 8):
         for y in range(1, 8, 2):
             pieces.append(Piece(0, x, y))
-    
+
 
 main()
 
