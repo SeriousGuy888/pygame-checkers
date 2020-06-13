@@ -98,8 +98,8 @@ class Square(pygame.sprite.Sprite):
         self.y = y
     def render(self):
         pygame.draw.rect(screen, self.colour, [
-            self.x,
-            self.y,
+            math.floor(SCREEN_WIDTH - (square_size * self.x) - ((SCREEN_WIDTH - (square_size * 8)) / 2)),
+            square_size * self.y,
             square_size,
             square_size
         ])
@@ -117,14 +117,14 @@ def main():
         for x in range(1, 8, 2):
             pieces.append(Piece(1, x + 4 + (y % 2), y))
 
-    for i in range(1, SQUARE_DIMENSION + 1):
-        for j in range(1, SQUARE_DIMENSION + 1):
-            if (i + (j % 2)) % 2 == 1:
+    for x in range(1, SQUARE_DIMENSION + 1):
+        for y in range(1, SQUARE_DIMENSION + 1):
+            if (x + (y % 2)) % 2 == 1:
                 square_colour = white_square
-            if (i + (j % 2)) % 2 == 0:
+            if (x + (y % 2)) % 2 == 0:
                 square_colour = black_square
 
-            squares.append(Square(square_colour, math.floor(SCREEN_WIDTH - (square_size * i) - ((SCREEN_WIDTH - (square_size * 8)) / 2)), square_size * j))
+            squares.append(Square(square_colour, x, y))
 
 main()
 
