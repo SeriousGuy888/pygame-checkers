@@ -110,7 +110,6 @@ pieces = []
 squares = []
 
 def main():
-    print("")
     for y in range(1, 4):
         for x in range(1, 8, 2):
             pieces.append(Piece(0, x + 4 + (y % 2), y))
