@@ -80,18 +80,19 @@ class Piece(pygame.sprite.Sprite):
         screen.blit(pygame.transform.scale(pygame.image.load(self.image), (square_size, square_size)), (self.x * square_size, self.y * square_size))
 
 class Square(pygame.sprite.Sprite):
-    def __init__(self, square_colour, x, y):
-        self.square_colour == square_colour
+    def __init__(self, colour, x, y):
+        pygame.sprite.Sprite.__init__(self)
+
+        self.colour = colour
         self.x = x
         self.y = y
     def render(self):
-        pygame.draw.rect(screen, square_colour, [
-            square_size * self.x,
-            square_size * self.y,
+        pygame.draw.rect(screen, self.colour, [
+            self.x,
+            self.y,
             square_size,
             square_size
         ])
-
 
 pieces = []
 squares = []
@@ -105,19 +106,8 @@ def main():
     for y in range(6, 9):
         for x in range(1, 8, 2):
             pieces.append(Piece(1, x + 4 + (y % 2), y))
-
-
-main()
-
-while RUNNING:
-    for event in pygame.event.get():
-        if event.type == KEYDOWN: # detect key presses
-            if event.key == K_ESCAPE: # detect esc
-                RUNNING = False # quit
-        if event.type == QUIT: # press quit
-            RUNNING = False # kills stuffs :D
-
-    screen.blit(background_image, (0, 0))
+    
+    
     for i in range(1, SQUARE_DIMENSION + 1):
         for j in range(1, SQUARE_DIMENSION + 1):
             sqCalc = i
@@ -129,13 +119,22 @@ while RUNNING:
             if sqCalc % 2 == 0:
                 square_colour = black_square
 
-            pygame.draw.rect(screen, square_colour, [
-                math.floor(SCREEN_WIDTH - (square_size * i) - ((SCREEN_WIDTH - (square_size * 8)) / 2)),
-                square_size * j,
-                square_size,
-                square_size
-            ])
+            squares.append(Square(square_colour, math.floor(SCREEN_WIDTH - (square_size * i) - ((SCREEN_WIDTH - (square_size * 8)) / 2)), square_size * j))
 
+main()
+
+while RUNNING:
+    for event in pygame.event.get():
+        if event.type == KEYDOWN: # detect key presses
+            if event.key == K_ESCAPE: # detect esc
+                RUNNING = False # quit
+        if event.type == QUIT: # press quit
+            RUNNING = False # kills stuffs :D
+
+
+    screen.blit(background_image, (0, 0))
+    for square in squares:
+        square.render()
     for piece in pieces:
         piece.render()
 
