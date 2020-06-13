@@ -16,14 +16,24 @@ screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN) # screen size and st
 pygame.display.set_caption("Caption")
 
 
+
+
 RUNNING = True # running variable - will be set to false when x is pressed, quitting the program
 
 
-background_image = pygame.image.load("./assets/table.png")
+
 white_square = (209, 168, 107)
 black_square = (135, 89, 19)
 square_size = math.floor(SCREEN_HEIGHT / 10)
 SQUARE_DIMENSION = 8
+
+background_image = pygame.image.load("./assets/table.png")
+red_piece_texture_path = "./assets/red_piece.png"
+red_piece_sel_texture_path = "./assets/glowing_red_piece.png"
+black_piece_texture_path = "./assets/black_piece.png"
+black_piece_sel_texture_path = "./assets/glowing_black_piece.png"
+
+
 
 # * red down; black up
 
@@ -32,9 +42,9 @@ class Piece(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         
         if team == 0:
-            img = "./assets/red_piece.png"
+            img = red_piece_texture_path
         elif team == 1:
-            img = "./assets/black_piece.png"
+            img = black_piece_texture_path
         else:
             print("fuck you. you broke everything")
 
@@ -46,11 +56,11 @@ class Piece(pygame.sprite.Sprite):
         self.y = y
 
     def move_piece(self):
-        self.image = "./assets/glowing_red_piece.png"
+        self.image = red_piece_sel_texture_path
         y_move = self.y - square_size
 
         if self.team == 1:
-            self.image = "./assets/glowing_black_piece.png"
+            self.image = black_piece_sel_texture_path
             y_move = self.y + square_size
 
         can_move_left = True
@@ -58,7 +68,7 @@ class Piece(pygame.sprite.Sprite):
         can_jump_left = False
         can_jump_right = False
             
-            # Checks if they can move 
+        # Checks if they can move 
         for loop_piece in pieces:
             if loop_piece.x == self.x + square_size:
                 can_move_right = False
@@ -70,7 +80,7 @@ class Piece(pygame.sprite.Sprite):
                 can_move_left = False
 
             
-            #  Draws a grey circle if they can move right/left
+            # Draws a grey circle if they can move right/left
             if can_move_right:
                 pygame.draw.circle(screen, (127, 127, 127), (self.x + square_size, y_move))
             if can_move_left:
@@ -94,9 +104,10 @@ class Square(pygame.sprite.Sprite):
             square_size
         ])
 
+dogshit = ["dog", "shit", "this is an easter egg that no one will find unless there's dog in 🌈"]
+
 pieces = []
 squares = []
-dogshit = ["dog", "shit", "this is an easter egg that no one will find unless there's dog in 🌈"]
 
 def main():
     print("")
