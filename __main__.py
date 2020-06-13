@@ -99,12 +99,12 @@ dogshit = ["dog", "shit", "this is an easter egg that no one will find unless th
 
 def main():
     print("")
-    for x in range(1, 3):
-        for y in range(1, 8, 2):
-            pieces.append(Piece(0, x, y))
-    for x in range(6, 8):
-        for y in range(1, 8, 2):
-            pieces.append(Piece(0, x, y))
+    for y in range(1, 4):
+        for x in range(1, 8, 2):
+            pieces.append(Piece(0, x + 4 + (y % 2), y))
+    for y in range(6, 9):
+        for x in range(1, 8, 2):
+            pieces.append(Piece(1, x + 4 + (y % 2), y))
 
 
 main()
