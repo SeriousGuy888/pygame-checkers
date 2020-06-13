@@ -91,7 +91,11 @@ class Piece(pygame.sprite.Sprite):
                 pygame.draw.circle(screen, (127, 127, 127), (self.x - square_size, y_move))
         
     def render(self):
-        screen.blit(pygame.transform.scale(pygame.image.load(self.image), (square_size, square_size)), (self.x * square_size, self.y * square_size))
+        screen.blit(
+            pygame.transform.scale(pygame.image.load(self.image),
+            (square_size, square_size)),
+            (self.x * square_size, self.y * square_size)
+        )
 
 class Square(pygame.sprite.Sprite):
     def __init__(self, colour, x, y):
