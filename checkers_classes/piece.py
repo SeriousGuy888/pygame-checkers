@@ -1,6 +1,6 @@
 import sys
-sys.path.append("..")
 import __main__ as main
+sys.path.append("..")
 
 class Piece(main.pygame.sprite.Sprite):
     def __init__(self, team, x, y):
@@ -35,13 +35,13 @@ class Piece(main.pygame.sprite.Sprite):
             
         # Checks if they can move 
         for loop_piece in main.pieces:
-            if loop_piece.x == self.x + square_size:
+            if loop_piece.x == self.x + main.square_size:
                 can_move_right = False
                 if loop_piece.team != self.team:
                     pass
                     # TODO: somehow figure out if this can jump
 
-            elif loop_piece == self.x - square_size:
+            elif loop_piece == self.x - main.square_size:
                 can_move_left = False
 
             

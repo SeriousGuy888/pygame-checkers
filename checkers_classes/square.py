@@ -1,6 +1,6 @@
 import sys
-sys.path.append("..")
 import __main__ as main
+sys.path.append("..")
 
 class Square(main.pygame.sprite.Sprite):
     def __init__(self, colour, x, y):
