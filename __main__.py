@@ -6,7 +6,11 @@ import pygame
 from checkers_classes import piece
 from checkers_classes import square
 
-from pygame.locals import *
+from pygame.locals import (
+    K_ESCAPE,
+    KEYDOWN,
+    QUIT,
+)
 
 user32 = ctypes.windll.user32
 
