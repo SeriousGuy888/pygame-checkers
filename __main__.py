@@ -3,7 +3,11 @@ import math
 import sys
 import pygame
 
-from pygame.locals import *
+from pygame.locals import (
+    KEYDOWN,
+    K_ESCAPE,
+    QUIT
+)
 
 user32 = ctypes.windll.user32
 
