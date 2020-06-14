@@ -46,7 +46,7 @@ class Piece(main.pygame.sprite.Sprite):
                 if loop_piece.team != self.team: # if the piece that is blocking the path is on the other team, then
                     checking_jumps = loop_piece.can_be_jumped("right") # checks if the piece in the path can be jumped
                     if checking_jumps: # if it can be jumped, then
-                        main.pygame.draw.circle(main.screen, ghost_piece, (self.x + 2.5, y_move * 2 + 0.5)) # Creates a gray circle which is an option to move
+                        # main.pygame.draw.circle(main.screen, ghost_piece, (self.x + 2.5, y_move * 2 + 0.5)) # Creates a gray circle which is an option to move
                         jump_count += 1 # Increases jump count 
                 else: # If the piece is on the same team then
                     checking_jumps = False # Doesn't check for jump
@@ -57,13 +57,14 @@ class Piece(main.pygame.sprite.Sprite):
                 if loop_piece.team != self.team: # If the piece that is blocking the path is on the other team, then
                     checking_jumps = loop_piece.can_be_jumped("left") # Checks if the piece in the path can be jumped
                     if checking_jumps: # If it can be jumped, then
-                        main.pygame.draw.circle(main.screen, ghost_piece, (self.x - 2.5, y_move * 2 + 0.5)) # Creates a gray circle which is an option to move
+                        # main.pygame.draw.circle(main.screen, ghost_piece, (self.x - 2.5, y_move * 2 + 0.5)) # Creates a gray circle which is an option to move
                         jump_count += 1 # Increases jump count 
                 else: # If the piece is on the same team then
                     checking_jumps = False # Doesn't check for jumps
                 
         # Draws a ghost piece if they can move right/left
-        if can_move_right:  
+        if can_move_right:
+            pass
             # print("drawing right circle")
             # print(int(y_move * main.square_size) + 2)
 
@@ -84,6 +85,7 @@ class Piece(main.pygame.sprite.Sprite):
             #     int(main.square_size / 2) # radius
             # )
         if can_move_left:
+            pass
             # print("lrawing deft circle")
             # main.pygame.draw.circle(
             #     main.screen,
