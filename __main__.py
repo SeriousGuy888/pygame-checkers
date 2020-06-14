@@ -3,14 +3,14 @@ import math
 import sys
 import pygame
 
-from checkers_classes import piece
-from checkers_classes import square
-
 from pygame.locals import (
     K_ESCAPE,
     KEYDOWN,
     QUIT,
 )
+
+from checkers_classes import piece
+from checkers_classes import square
 
 user32 = ctypes.windll.user32
 
