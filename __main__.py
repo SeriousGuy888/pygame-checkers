@@ -67,9 +67,7 @@ def main():
             squares.append(square.Square(square_colour, x, y))
 
     for x in range(1, 8, 2):
-        # todo: combine these two for loops because what is being done here is a terrible coding practice
-        #* I think I fixed it
-        for y in [1,2,3,6,7,8]:
+        for y in [1, 2, 3, 6, 7, 8]:
             x_coord = x + (1 - (y % 2))
             y_coord = y
             team = 0 if y < 5 else 1 
