@@ -76,14 +76,6 @@ def main():
             for loop_square in squares:
                 if loop_square.x == x_coord and loop_square.y == y_coord:
                     pieces.append(piece.Piece(team, loop_square))
-    # print(len(pieces))
-        # for y in range(6, 9):
-        #     x_coord = x + (1 - (y % 2))
-        #     y_coord = y
-        #     for loop_square in squares:
-        #         if loop_square.x == x_coord and loop_square.y == y_coord:
-        #             pieces.append(piece.Piece(1, loop_square))
-    # pieces[3].can_be_jumped("left", 7)
     
 
     
