@@ -68,18 +68,24 @@ def main():
 
     for x in range(1, 8, 2):
         # todo: combine these two for loops because what is being done here is a terrible coding practice
-        for y in range(1, 4):
+        #* I think I fixed it
+        for y in [1,2,3,6,7,8]:
             x_coord = x + (1 - (y % 2))
             y_coord = y
+            team = 0 if y < 5 else 1 
             for loop_square in squares:
                 if loop_square.x == x_coord and loop_square.y == y_coord:
-                    pieces.append(piece.Piece(0, loop_square))
-        for y in range(6, 9):
-            x_coord = x + (1 - (y % 2))
-            y_coord = y
-            for loop_square in squares:
-                if loop_square.x == x_coord and loop_square.y == y_coord:
-                    pieces.append(piece.Piece(1, loop_square))
+                    pieces.append(piece.Piece(team, loop_square))
+    # print(len(pieces))
+        # for y in range(6, 9):
+        #     x_coord = x + (1 - (y % 2))
+        #     y_coord = y
+        #     for loop_square in squares:
+        #         if loop_square.x == x_coord and loop_square.y == y_coord:
+        #             pieces.append(piece.Piece(1, loop_square))
+    # pieces[3].can_be_jumped("left", 7)
+    
+
     
     
 

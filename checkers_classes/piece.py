@@ -24,41 +24,41 @@ class Piece(main.pygame.sprite.Sprite):
         self.team = team
 
     def move_piece(self):
-        ghost_piece = (127, 127, 127, 0.67)
+        # ghost_piece = (127, 127, 127, 0.67)
 
         self.image = main.red_piece_sel_texture_path
 
         if self.team == 1:
             self.image = main.black_piece_sel_texture_path
 
-        can_move_left = True
-        can_move_right = True
+        can_move_left = self.x > 1
+        can_move_right = self.x < 8
         checking_jumps = True
         jump_count = 0
         # Checks if they can move
-        # while checking_jumps: 
-        for loop_piece in main.pieces:
-            #  or self.x + 1 > 8
+        while checking_jumps: 
+            for loop_piece in main.pieces:
+                #  or self.x + 1 > 8
 
-            if loop_piece.x == self.x + 1 and loop_piece.y == self.y_move or jump_count > 0: # checks if there is a piece blocking the path
-                can_move_right = False # makes it not able to move if theres a piece blocking the path
-                print("you cant shirt box move right")
-                if loop_piece.team != self.team: # if the piece that is blocking the path is on the other team, then
-                    checking_jumps = loop_piece.can_be_jumped("right") # checks if the piece in the path can be jumped
-                    if checking_jumps: # if it can be jumped, then
-                        # main.pygame.draw.circle(main.screen, ghost_piece, (self.x + 2.5, y_move * 2 + 0.5)) # Creates a gray circle which is an option to move
-                        jump_count += 1 # Increases jump count 
-                else: # If the piece is on the same team then
-                    checking_jumps = False # Doesn't check for jump
+                if loop_piece.x == self.x + 1 and loop_piece.y == self.y_move and can_move_right or jump_count > 0: # checks if there is a piece blocking the path
+                    can_move_right = False # makes it not able to move if theres a piece blocking the path
+                    print("you cant shirt box move right")
+                    if loop_piece.team != self.team: # if the piece that is blocking the path is on the other team, then
+                        checking_jumps = loop_piece.can_be_jumped("right") # checks if the piece in the path can be jumped
+                        if checking_jumps: # if it can be jumped, then
+                            # main.pygame.draw.circle(main.screen, ghost_piece, (self.x + 2.5, y_move * 2 + 0.5)) # Creates a gray circle which is an option to move
+                            jump_count += 1 # Increases jump count 
+                    # else: # If the piece is on the same team then
+                    #     checking_jumps = False # Doesn't check for jump
 
-            if loop_piece.x == self.x - 1 and loop_piece.y == self.y_move or jump_count > 0:
-                can_move_left = False # Makes it not able to move if theres a piece blocking the path
-                print("ytard cant move left")
-                if loop_piece.team != self.team: # If the piece that is blocking the path is on the other team, then
-                    checking_jumps = loop_piece.can_be_jumped("left") # Checks if the piece in the path can be jumped
-                    if checking_jumps: # If it can be jumped, then
-                        # main.pygame.draw.circle(main.screen, ghost_piece, (self.x - 2.5, y_move * 2 + 0.5)) # Creates a gray circle which is an option to move
-                        jump_count += 1 # Increases jump count 
+                if loop_piece.x == self.x - 1 and loop_piece.y == self.y_move or jump_count > 0:
+                    can_move_left = False # Makes it not able to move if theres a piece blocking the path
+                    print("ytard cant move left")
+                    if loop_piece.team != self.team: # If the piece that is blocking the path is on the other team, then
+                        checking_jumps = loop_piece.can_be_jumped("left") # Checks if the piece in the path can be jumped
+                        if checking_jumps: # If it can be jumped, then
+                            # main.pygame.draw.circle(main.screen, ghost_piece, (self.x - 2.5, y_move * 2 + 0.5)) # Creates a gray circle which is an option to move
+                            jump_count += 1 # Increases jump count 
                 else: # If the piece is on the same team then
                     checking_jumps = False # Doesn't check for jumps
                 
@@ -95,20 +95,26 @@ class Piece(main.pygame.sprite.Sprite):
             #     int(main.square_size / 2)
             # )
 
-    def can_be_jumped(self, x_direction):
+    def can_be_jumped(self, x_direction, jumper_y_move):
+        # print(jumper_y_move)
+        # print(self.y_move)
         can_jump = True
         if x_direction == "right":
             for loop_piece in main.pieces:
                 if loop_piece.x == self.x + 1:
                     can_jump = False
+                    print("cant be jumped right")
 
         if x_direction == "left":
             for loop_piece in main.pieces:
-                if loop_piece.x == self.x - 1:
+                # if loop_piece.team == self.team:
+                #     print(loop_piece.x == self.x - 1 and loop_piece.y == jumper_y_move)
+                if loop_piece.x == self.x - 1 and loop_piece.y == jumper_y_move:
                     can_jump = False
+                    print("cant be jumped left")
 
         else:
-            print("aaaaaaaaaaaaaaa everything is broken")
+            print("is able to be jumped" + x_direction)
 
         return can_jump
 
