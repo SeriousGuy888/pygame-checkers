@@ -11,10 +11,10 @@ class Piece(main.pygame.sprite.Sprite):
         
         if team == 0:
             img = main.red_piece_texture_path
-            self.y_move = self.y - 1
+            self.y_move = self.y + 1
         elif team == 1:
             img = main.black_piece_texture_path
-            self.y_move = self.y + 1
+            self.y_move = self.y - 1
         else:
             print("duck you. you broke everything")
 
