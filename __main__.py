@@ -64,20 +64,21 @@ def main():
             squares.append(square.Square(square_colour, x, y))
 
     for x in range(1, 8, 2):
+        # todo: combine these two for loops because what is being done here is a terrible coding practice
         for y in range(1, 4):
-            x_coord = x + (y % 2)
+            x_coord = x + (1 - (y % 2))
             y_coord = y
             for loop_square in squares:
                 if loop_square.x == x_coord and loop_square.y == y_coord:
                     pieces.append(piece.Piece(0, loop_square))
         for y in range(6, 9):
-            x_coord = x + (y % 2)
+            x_coord = x + (1 - (y % 2))
             y_coord = y
             for loop_square in squares:
                 if loop_square.x == x_coord and loop_square.y == y_coord:
                     pieces.append(piece.Piece(1, loop_square))
     
-    random.choice(pieces).move_piece()
+    
 
 main()
 
@@ -88,7 +89,7 @@ while RUNNING: # main game loop
                 RUNNING = False # quit
         if event.type == QUIT: # press quit
             RUNNING = False # kills stuffs :D
-
+    
 
     screen.blit(background_image, (0, 0)) # display background image
     for square in squares: # process all the squares
