@@ -9,6 +9,8 @@ from pygame.locals import (
     K_ESCAPE,
     KEYDOWN,
     QUIT,
+    MOUSEBUTTONDOWN,
+    MOUSEBUTTONUP
 )
 
 from checkers_classes import piece
