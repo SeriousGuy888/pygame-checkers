@@ -96,6 +96,8 @@ while RUNNING: # main game loop
         square.render()
     for piece in pieces: # process all the pieces
         piece.render()
+    
+    pieces[2].move_piece()
 
     pygame.display.update()
     pygame.display.flip() # display the display to the display
