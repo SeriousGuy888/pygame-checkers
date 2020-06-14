@@ -40,9 +40,9 @@ class Piece(main.pygame.sprite.Sprite):
         # Checks if they can move
         # while checking_jumps: 
         for loop_piece in main.pieces:
-            # print(loop_piece.x)
-            # print(self.x + 1)
-            # print(loop_piece.x == self.x + 1)
+            print(loop_piece.x)
+            print(self.x - 1)
+            print(loop_piece.x == self.x - 1)
 
             if loop_piece.x == self.x + 1 and loop_piece.y == self.y_move or jump_count > 0: # checks if there is a piece blocking the path
                 can_move_right = False # makes it not able to move if theres a piece blocking the path
