@@ -1,8 +1,9 @@
+
+import sys
 import ctypes
 import math
-import sys
-import pygame
 import random
+import pygame
 
 from pygame.locals import (
     K_ESCAPE,
