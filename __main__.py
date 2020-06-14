@@ -33,8 +33,11 @@ class Piece(pygame.sprite.Sprite):
         
         if team == 0:
             img = "./assets/red_piece.png"
+            self.y_move = self.y - square_size
         elif team == 1:
             img = "./assets/black_piece.png"
+            self.y_move = self.y + square_size
+
         else:
             print("fuck you. you broke everything")
 
@@ -47,35 +50,61 @@ class Piece(pygame.sprite.Sprite):
 
     def move_piece(self):
         self.image = "./assets/glowing_red_piece.png"
-        y_move = self.y - square_size
-
+        
         if self.team == 1:
             self.image = "./assets/glowing_black_piece.png"
-            y_move = self.y + square_size
 
         can_move_left = True
         can_move_right = True
-        can_jump_left = False
-        can_jump_right = False
             
             # Checks if they can move 
         for loop_piece in pieces:
-            if loop_piece.x == self.x + square_size:
+            if loop_piece.x == self.x + square_size and loop_piece.y == self.y_move:
                 can_move_right = False
                 if loop_piece.team != self.team:
-                    pass
-                    # TODO: somehow figure out if this can jump
+                    self.check_jumps(loop_piece.x, loop_piece.y)
 
-            elif loop_piece == self.x - square_size:
+            elif loop_piece == self.x - square_size and loop_piece.y == self.y_move:
                 can_move_left = False
+                if loop_piece.team != self.team:
+                    self.check_jumps()
 
             
             #  Draws a grey circle if they can move right/left
             if can_move_right:
-                pygame.draw.circle(screen, (127, 127, 127), (self.x + square_size, y_move))
+                pygame.draw.circle(screen, (127, 127, 127), (self.x + square_size, self.y_move))
             if can_move_left:
-                pygame.draw.circle(screen, (127, 127, 127), (self.x - square_size, y_move))
-        
+                pygame.draw.circle(screen, (127, 127, 127), (self.x - square_size, self.y_move))
+
+    def check_jumps(self, jump_piece_x, jump_piece_y):
+        #! I'm pretty sure a can_jump_this_piece function would be a much better idea. Come back to this later
+
+        if jump_piece_x < self.x:
+            can_jump_left = True
+            can_jump_right = False
+        elif jump_piece_x > self.x:
+            can_jump_right = True
+            can_jump_left = False
+        else:
+            print("You really fucked up the can jump thing")
+
+        checking_jumps = True
+        future_x = self.x
+        future_y = self.y
+
+        while checking_jumps:
+            for loop_piece in pieces:
+                if loop_piece.x == jump_piece_x + square_size and loop_piece.y == self.y_move and can_jump_right:
+                    can_jump_right = False
+                    checking_jumps = False
+                elif loop_piece.x == jump_piece_x - square_size and loop_piece.y == self.y_move and can_jump_left:
+                    can_jump_left = False
+                    checking_jumps = False
+
+
+        pass
+        # TODO: somehow figure out if this can jump
+
     def render(self):
         screen.blit(pygame.transform.scale(pygame.image.load(self.image), (square_size, square_size)), (self.x * square_size, self.y * square_size))
 
