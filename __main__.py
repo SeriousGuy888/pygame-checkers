@@ -3,7 +3,11 @@ import math
 import sys
 import pygame
 
-from pygame.locals import *
+from pygame.locals import (
+    KEYDOWN,
+    K_ESCAPE,
+    QUIT
+)
 
 user32 = ctypes.windll.user32
 
@@ -16,14 +20,24 @@ screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN) # screen size and st
 pygame.display.set_caption("Caption")
 
 
+
+
 RUNNING = True # running variable - will be set to false when x is pressed, quitting the program
 
 
-background_image = pygame.image.load("./assets/table.png")
+
 white_square = (209, 168, 107)
 black_square = (135, 89, 19)
 square_size = math.floor(SCREEN_HEIGHT / 10)
 SQUARE_DIMENSION = 8
+
+background_image = pygame.image.load("./assets/table.png")
+red_piece_texture_path = "./assets/red_piece.png"
+red_piece_sel_texture_path = "./assets/glowing_red_piece.png"
+black_piece_texture_path = "./assets/black_piece.png"
+black_piece_sel_texture_path = "./assets/glowing_black_piece.png"
+
+
 
 # * red down; black up
 
@@ -32,10 +46,10 @@ class Piece(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         
         if team == 0:
-            img = "./assets/red_piece.png"
+            img = red_piece_texture_path
             self.y_move = self.y - square_size
         elif team == 1:
-            img = "./assets/black_piece.png"
+            img = black_piece_texture_path
             self.y_move = self.y + square_size
 
         else:
@@ -49,15 +63,15 @@ class Piece(pygame.sprite.Sprite):
         self.y = y
 
     def move_piece(self):
-        self.image = "./assets/glowing_red_piece.png"
+        self.image = red_piece_sel_texture_path
         
         if self.team == 1:
-            self.image = "./assets/glowing_black_piece.png"
+            self.image = black_piece_sel_texture_path
 
         can_move_left = True
         can_move_right = True
             
-            # Checks if they can move 
+        # Checks if they can move 
         for loop_piece in pieces:
             if loop_piece.x == self.x + square_size and loop_piece.y == self.y_move:
                 can_move_right = False
@@ -70,7 +84,7 @@ class Piece(pygame.sprite.Sprite):
                     self.check_jumps()
 
             
-            #  Draws a grey circle if they can move right/left
+            # Draws a grey circle if they can move right/left
             if can_move_right:
                 pygame.draw.circle(screen, (127, 127, 127), (self.x + square_size, self.y_move))
             if can_move_left:
@@ -106,28 +120,33 @@ class Piece(pygame.sprite.Sprite):
         # TODO: somehow figure out if this can jump
 
     def render(self):
-        screen.blit(pygame.transform.scale(pygame.image.load(self.image), (square_size, square_size)), (self.x * square_size, self.y * square_size))
+        screen.blit(
+            pygame.transform.scale(pygame.image.load(self.image),
+            (square_size, square_size)),
+            (self.x * square_size, self.y * square_size)
+        )
 
 class Square(pygame.sprite.Sprite):
-    def __init__(self, square_colour, x, y):
-        self.square_colour == square_colour
+    def __init__(self, colour, x, y):
+        pygame.sprite.Sprite.__init__(self)
+
+        self.colour = colour
         self.x = x
         self.y = y
     def render(self):
-        pygame.draw.rect(screen, square_colour, [
-            square_size * self.x,
+        pygame.draw.rect(screen, self.colour, [
+            math.floor(SCREEN_WIDTH - (square_size * self.x) - ((SCREEN_WIDTH - (square_size * 8)) / 2)),
             square_size * self.y,
             square_size,
             square_size
         ])
 
+dogshit = ["dog", "shit", "this is an easter egg that no one will find unless there's dog in 🌈"]
 
 pieces = []
 squares = []
-dogshit = ["dog", "shit", "this is an easter egg that no one will find unless there's dog in 🌈"]
 
 def main():
-    print("")
     for y in range(1, 4):
         for x in range(1, 8, 2):
             pieces.append(Piece(0, x + 4 + (y % 2), y))
@@ -135,6 +154,14 @@ def main():
         for x in range(1, 8, 2):
             pieces.append(Piece(1, x + 4 + (y % 2), y))
 
+    for x in range(1, SQUARE_DIMENSION + 1):
+        for y in range(1, SQUARE_DIMENSION + 1):
+            if (x + (y % 2)) % 2 == 1:
+                square_colour = white_square
+            if (x + (y % 2)) % 2 == 0:
+                square_colour = black_square
+
+            squares.append(Square(square_colour, x, y))
 
 main()
 
@@ -146,25 +173,10 @@ while RUNNING:
         if event.type == QUIT: # press quit
             RUNNING = False # kills stuffs :D
 
+
     screen.blit(background_image, (0, 0))
-    for i in range(1, SQUARE_DIMENSION + 1):
-        for j in range(1, SQUARE_DIMENSION + 1):
-            sqCalc = i
-            if j % 2 == 1:
-                sqCalc += 1
-
-            if sqCalc % 2 == 1:
-                square_colour = white_square
-            if sqCalc % 2 == 0:
-                square_colour = black_square
-
-            pygame.draw.rect(screen, square_colour, [
-                math.floor(SCREEN_WIDTH - (square_size * i) - ((SCREEN_WIDTH - (square_size * 8)) / 2)),
-                square_size * j,
-                square_size,
-                square_size
-            ])
-
+    for square in squares:
+        square.render()
     for piece in pieces:
         piece.render()
 
