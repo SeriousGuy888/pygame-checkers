@@ -24,12 +24,7 @@ SCREEN_HEIGHT = user32.GetSystemMetrics(1)
 pygame.init() # actual game
 
 screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN) # screen size and stuffs
-pygame.display.set_caption("Caption")
-
-
-
-
-RUNNING = True # running variable - will be set to false when x is pressed, quitting the program
+pygame.display.set_caption("Donut Checkers")
 
 
 
@@ -44,8 +39,6 @@ red_piece_sel_texture_path = "./assets/glowing_red_piece.png"
 black_piece_texture_path = "./assets/black_piece.png"
 black_piece_sel_texture_path = "./assets/glowing_black_piece.png"
 
-
-
 # * red down; black up
 
 
@@ -57,6 +50,7 @@ ghost_pieces = []
 squares = []
 
 def main():
+    RUNNING = True # running variable - will be set to false when x is pressed, quitting the program
     for x in range(1, SQUARE_DIMENSION + 1):
         for y in range(1, SQUARE_DIMENSION + 1):
             if (x + (y % 2)) % 2 == 1:
@@ -74,31 +68,27 @@ def main():
             for loop_square in squares:
                 if loop_square.x == x_coord and loop_square.y == y_coord:
                     pieces.append(piece.Piece(team, loop_square))
-    
 
-    
-    
+    while RUNNING: # main game loop
+        for event in pygame.event.get(): # process every event
+            if event.type == KEYDOWN: # detect key presses
+                if event.key == K_ESCAPE: # detect esc
+                    RUNNING = False # quit
+            if event.type == QUIT: # press quit
+                RUNNING = False # kills stuffs :D
+        
+
+        screen.blit(background_image, (0, 0)) # display background image
+        for loop_square in squares: # process all the squares
+            loop_square.render()
+        for loop_piece in pieces: # process all the pieces
+            loop_piece.render()
+        
+        # pieces[3].move_piece()
+
+        pygame.display.update()
+        pygame.display.flip() # display the display to the display
+
 
 main()
-
-while RUNNING: # main game loop
-    for event in pygame.event.get(): # process every event
-        if event.type == KEYDOWN: # detect key presses
-            if event.key == K_ESCAPE: # detect esc
-                RUNNING = False # quit
-        if event.type == QUIT: # press quit
-            RUNNING = False # kills stuffs :D
-    
-
-    screen.blit(background_image, (0, 0)) # display background image
-    for square in squares: # process all the squares
-        square.render()
-    for piece in pieces: # process all the pieces
-        piece.render()
-    
-    pieces[3].move_piece()
-
-    pygame.display.update()
-    pygame.display.flip() # display the display to the display
-
 sys.exit()
