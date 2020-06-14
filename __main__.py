@@ -13,6 +13,7 @@ from pygame.locals import (
 
 from checkers_classes import piece
 from checkers_classes import king_piece
+from checkers_classes import ghost_piece
 from checkers_classes import square
 
 user32 = ctypes.windll.user32
@@ -51,6 +52,8 @@ black_piece_sel_texture_path = "./assets/glowing_black_piece.png"
 dogshit = ["dog", "shirt", "this is an easter egg that no one will find unless there's dog in 🌈"]
 
 pieces = []
+king_pieces = []
+ghost_pieces = []
 squares = []
 
 def main():
@@ -97,7 +100,7 @@ while RUNNING: # main game loop
     for piece in pieces: # process all the pieces
         piece.render()
     
-    pieces[2].move_piece()
+    pieces[3].move_piece()
 
     pygame.display.update()
     pygame.display.flip() # display the display to the display
