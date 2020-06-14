@@ -55,7 +55,7 @@ class Piece(main.pygame.sprite.Sprite):
                 # else: # If the piece is on the same team then
                 #     checking_jumps = False # Doesn't check for jump
 
-            if loop_piece == self.x - 1 and loop_piece.y == self.y_move or jump_count > 0:
+            if loop_piece.x == self.x + 1 and loop_piece.y == self.y_move or jump_count > 0:
                 can_move_left = False # Makes it not able to move if theres a piece blocking the path
                 print("ytard cant move left")
                 # if loop_piece.team != self.team: # If the piece that is blocking the path is on the other team, then
