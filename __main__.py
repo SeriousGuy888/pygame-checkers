@@ -72,20 +72,26 @@ def main():
                     pieces.append(piece.Piece(team, loop_square))
 
     while RUNNING: # main game loop
-        for event in pygame.event.get(): # process every event
-            if event.type == KEYDOWN: # detect key presses
-                if event.key == K_ESCAPE: # detect esc
-                    RUNNING = False # quit
-            if event.type == QUIT: # press quit
-                RUNNING = False # kills stuffs :D
-        
-
         screen.blit(background_image, (0, 0)) # display background image
         for loop_square in squares: # process all the squares
             loop_square.render()
         for loop_piece in pieces: # process all the pieces
             loop_piece.render()
         
+
+
+        mouse_pressed = pygame.mouse.get_pressed()
+        if mouse_pressed[0]:
+            mouse_pos = pygame.mouse.get_pos()
+            pygame.draw.circle(screen, (255, 255, 255), mouse_pos, 25)
+
+        for event in pygame.event.get(): # process every event
+            if event.type == KEYDOWN: # detect key presses
+                if event.key == K_ESCAPE: # detect esc
+                    RUNNING = False # quit
+            if event.type == QUIT: # press quit
+                RUNNING = False # kills stuffs :D
+
         # pieces[3].move_piece()
 
         pygame.display.update()
