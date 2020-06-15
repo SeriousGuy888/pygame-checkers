@@ -58,9 +58,9 @@ def main():
     RUNNING = True # running variable - will be set to false when x is pressed, quitting the program
     for x in range(1, SQUARE_DIMENSION + 1):
         for y in range(1, SQUARE_DIMENSION + 1):
-            if (x + (y % 2)) % 2 == 1:
+            if (x + (1 - y % 2)) % 2 == 1:
                 square_colour = white_square
-            if (x + (y % 2)) % 2 == 0:
+            if (x + (1 - y % 2)) % 2 == 0:
                 square_colour = black_square
 
             # print(x, y)
@@ -108,8 +108,8 @@ def main():
                 # print("loop piece x: " + str(loop_piece.x * square_size + board_x_offset))
                 # print("mouse: " + str(mouse_pos_x))
                 if(
-                    loop_piece.x * square_size + board_x_offset < mouse_pos_x and
-                    (loop_piece.x + 1) * square_size + board_x_offset > mouse_pos_x and
+                    (loop_piece.x - 1) * square_size + board_x_offset < mouse_pos_x and
+                    loop_piece.x * square_size + board_x_offset > mouse_pos_x and
                     loop_piece.y * square_size < mouse_pos_y and
                     (loop_piece.y + 1) * square_size > mouse_pos_y
                 ):
