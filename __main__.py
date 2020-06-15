@@ -79,6 +79,8 @@ def main():
             loop_square.render()
         for loop_piece in pieces: # process all the pieces
             loop_piece.render()
+        for loop_ghost_piece in ghost_pieces:
+            loop_ghost_piece.render()
         
 
 
@@ -95,6 +97,7 @@ def main():
                 RUNNING = False # kills stuffs :D
 
         # pieces[3].move_piece()
+        ghost_pieces
 
         pygame.display.update()
         pygame.display.flip() # display the display to the display
