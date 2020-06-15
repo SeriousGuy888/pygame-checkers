@@ -25,5 +25,5 @@ class GhostPiece(main.pygame.sprite.Sprite):
         )
    
     def move_ghosted_piece(self):
-         self.ghosted_piece.x = self.x
-         self.ghosted_piece.y = self.y
+        self.ghosted_piece.x = self.x
+        self.ghosted_piece.y = self.y
