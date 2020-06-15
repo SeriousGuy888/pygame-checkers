@@ -106,6 +106,7 @@ def main():
                 RUNNING = False # kills stuffs :D
 
         # pieces[3].move_piece()
+        ghost_pieces
 
         pygame.display.update()
         pygame.display.flip() # display the display to the display

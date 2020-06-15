@@ -14,10 +14,14 @@ class Piece(main.pygame.sprite.Sprite):
             img = main.red_piece_texture_path
             self.y_move = self.y + 1 # y_move is the y direction the piece can move. It's saved as the y it can go to on a move
             self.jump_y_move = self.y + 2 # This is y_move but for jumping
+            self.backwards_y_move = self.y - 1
+            self.backwards_jump_y_move = self.y - 2
         elif team == 1:
             img = main.black_piece_texture_path
             self.y_move = self.y - 1 # y_move is the y direction the piece can move. It's saved as the y it can go to on a move
             self.jump_y_move = self.y - 2 # This is y_move but for jumping
+            self.backwards_y_move = self.y + 1
+            self.backwards_jump_y_move = self.y + 2
         else:
             print("duck you. you broke everything")
 
@@ -28,6 +32,8 @@ class Piece(main.pygame.sprite.Sprite):
 
     def move_piece(self):
         # ghost_piece = (127, 127, 127, 0.67)
+        print(self.x)
+        print(self.y)
 
         self.image = main.red_piece_sel_texture_path
 
