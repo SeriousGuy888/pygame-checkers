@@ -114,7 +114,7 @@ def main():
                     (loop_piece.y + 1) * square_size > mouse_pos_y
                 ):
                     # if mouse_collide(piece, piece.Piece, True) and mouse_pressed[0]: # detects if the 
-                    pygame.draw.circle(screen, (255, 255, 255), mouse_pos, 25)
+                    # pygame.draw.circle(screen, (255, 255, 255), mouse_pos, 25)
                     loop_piece.move_piece()
         
 
