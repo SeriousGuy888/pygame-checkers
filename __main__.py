@@ -77,13 +77,14 @@ def main():
             loop_square.render()
         for loop_piece in pieces: # process all the pieces
             loop_piece.render()
-        
 
-
+        mouse_collide = pygame.sprite.spritecollide
+        mouse_pos = pygame.mouse.get_pos()
         mouse_pressed = pygame.mouse.get_pressed()
         if mouse_pressed[0]:
-            mouse_pos = pygame.mouse.get_pos()
-            pygame.draw.circle(screen, (255, 255, 255), mouse_pos, 25)
+            if mouse_collide(piece, piece.Piece, True) and mouse_pressed[0]:
+              pygame.draw.circle(screen, (255, 255, 255), mouse_pos, 25)
+        
 
         for event in pygame.event.get(): # process every event
             if event.type == KEYDOWN: # detect key presses
