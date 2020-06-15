@@ -71,7 +71,7 @@ def main():
                 if loop_square.x == x_coord and loop_square.y == y_coord:
                     pieces.append(piece.Piece(team, loop_square))
     
-        pieces[3].move_piece()
+    pieces[3].move_piece()
 
     while RUNNING: # main game loop
         screen.blit(background_image, (0, 0)) # display background image
