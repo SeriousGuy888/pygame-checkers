@@ -130,7 +130,7 @@ def main():
                 ):
                     # if mouse_collide(piece, piece.Piece, True) and mouse_pressed[0]: # detects if the 
                     # pygame.draw.circle(screen, (255, 255, 255), mouse_pos, 25)
-                    loop_ghost_piece.move_piece()
+                    loop_ghost_piece.move_ghosted_piece()
         
 
         for event in pygame.event.get(): # process every event
