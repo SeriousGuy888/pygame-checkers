@@ -3,7 +3,7 @@ import __main__ as main
 sys.path.append("..")
 
 class GhostPiece(main.pygame.sprite.Sprite):
-    def __init__(self, square):
+    def __init__(self, square, ghosted_piece):
         main.pygame.sprite.Sprite.__init__(self)
 
         self.x = square.x
@@ -22,3 +22,7 @@ class GhostPiece(main.pygame.sprite.Sprite):
                 self.y * main.square_size
             )
         )
+   
+    def move_ghosted_piece(self):
+         self.ghosted_piece.x = self.x
+         self.ghosted_piece.y = self.y
