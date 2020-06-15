@@ -17,7 +17,7 @@ class GhostPiece(main.pygame.sprite.Sprite):
                 (main.square_size, main.square_size) # image dimensions
             ),
             ( # pixel location
-                main.math.floor(main.SCREEN_WIDTH - (main.square_size * self.x) - ((main.SCREEN_WIDTH - (main.square_size * 8)) / 2)),
+                int(main.SCREEN_WIDTH - (main.square_size * self.x) - ((main.SCREEN_WIDTH - (main.square_size * 8)) / 2)),
                 self.y * main.square_size
             )
         )
