@@ -92,13 +92,16 @@ def main():
             loop_ghost_piece.render()
         
 
-
         mouse_collide = pygame.sprite.spritecollide
         mouse_pos = pygame.mouse.get_pos()
         mouse_pressed = pygame.mouse.get_pressed()
+        mouse_pos_x, mouse_pos_y = mouse_pos
+
         if mouse_pressed[0]:
-            if mouse_collide(piece, piece.Piece, True) and mouse_pressed[0]:
-              pygame.draw.circle(screen, (255, 255, 255), mouse_pos, 25)
+            for loop_piece in pieces:
+                if loop_piece.x - 1 * square_size < mouse_pos_x and loop_piece.x + 1 * square_size < mouse_pos_x and loop_piece.y * square_size < mouse_pos_y and (loop_piece.y + 1) * square_size  > mouse_pos_y:
+                    # if mouse_collide(piece, piece.Piece, True) and mouse_pressed[0]: # detects if the 
+                    pygame.draw.circle(screen, (255, 255, 255), mouse_pos, 25)
         
 
         for event in pygame.event.get(): # process every event
