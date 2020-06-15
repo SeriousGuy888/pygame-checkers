@@ -116,6 +116,21 @@ def main():
                     # if mouse_collide(piece, piece.Piece, True) and mouse_pressed[0]: # detects if the 
                     # pygame.draw.circle(screen, (255, 255, 255), mouse_pos, 25)
                     loop_piece.move_piece()
+
+            for loop_ghost_piece in ghost_pieces:
+                # todo: fix x coordinates thing or something
+
+                # print("loop piece x: " + str(loop_piece.x * square_size + board_x_offset))
+                # print("mouse: " + str(mouse_pos_x))
+                if(
+                    (loop_ghost_piece.x - 1) * square_size + board_x_offset < mouse_pos_x and
+                    loop_ghost_piece.x * square_size + board_x_offset > mouse_pos_x and
+                    loop_ghost_piece.y * square_size < mouse_pos_y and
+                    (loop_ghost_piece.y + 1) * square_size > mouse_pos_y
+                ):
+                    # if mouse_collide(piece, piece.Piece, True) and mouse_pressed[0]: # detects if the 
+                    # pygame.draw.circle(screen, (255, 255, 255), mouse_pos, 25)
+                    loop_ghost_piece.move_piece()
         
 
         for event in pygame.event.get(): # process every event
