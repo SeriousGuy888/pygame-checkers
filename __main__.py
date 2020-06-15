@@ -63,7 +63,7 @@ def main():
             if (x + (y % 2)) % 2 == 0:
                 square_colour = black_square
 
-            print(x, y)
+            # print(x, y)
             squares.append(square.Square(square_colour, x, y))
 
     for x in range(1, 8, 2):
