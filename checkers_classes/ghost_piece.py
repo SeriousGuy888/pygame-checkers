@@ -2,8 +2,6 @@ import sys
 import __main__ as main
 sys.path.append("..")
 
-police_officer = ["dog", "ass"]
-#  asscrack = 1 + police_officer # ! deprecated
 class GhostPiece(main.pygame.sprite.Sprite):
     def __init__(self, square):
         main.pygame.sprite.Sprite.__init__(self)
