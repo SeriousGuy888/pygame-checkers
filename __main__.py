@@ -35,11 +35,12 @@ black_square = (135, 89, 19)
 square_size = math.floor(SCREEN_HEIGHT / 10)
 SQUARE_DIMENSION = 8
 
-background_image = pygame.image.load("./assets/table.png")
-red_piece_texture_path = "./assets/red_piece.png"
-red_piece_sel_texture_path = "./assets/glowing_red_piece.png"
-black_piece_texture_path = "./assets/black_piece.png"
-black_piece_sel_texture_path = "./assets/glowing_black_piece.png"
+background_image = pygame.image.load("./assets/textures/table.png")
+red_piece_texture_path = "./assets/textures/red_piece.png"
+red_piece_sel_texture_path = "./assets/textures/glowing_red_piece.png"
+black_piece_texture_path = "./assets/textures/black_piece.png"
+black_piece_sel_texture_path = "./assets/textures/glowing_black_piece.png"
+ghost_piece_texture_path = "./assets/textures/ghost_piece.png"
 
 # * red down; black up
 

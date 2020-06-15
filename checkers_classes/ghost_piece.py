@@ -13,7 +13,7 @@ class GhostPiece(main.pygame.sprite.Sprite):
     def render(self):
         main.screen.blit(
             main.pygame.transform.scale( # resize to fit squares
-                main.pygame.image.load("assets/ghost_piece.png"), # the images
+                main.pygame.image.load(main.ghost_piece_texture_path), # the images
                 (main.square_size, main.square_size) # image dimensions
             ),
             ( # pixel location
