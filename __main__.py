@@ -60,6 +60,7 @@ def main():
             if (x + (y % 2)) % 2 == 0:
                 square_colour = black_square
 
+            # print(x, y)
             squares.append(square.Square(square_colour, x, y))
 
     for x in range(1, 8, 2):
@@ -70,6 +71,12 @@ def main():
             for loop_square in squares:
                 if loop_square.x == x_coord and loop_square.y == y_coord:
                     pieces.append(piece.Piece(team, loop_square))
+    
+    # for x in range(2, 7):
+    #     for y in range(3, 6):
+    #         for loop_square in squares:
+    #             if loop_square.x == x and loop_square.y == y:
+    #                 pieces.append(ghost_piece.GhostPiece(loop_square))
     
     pieces[3].move_piece()
 
