@@ -11,7 +11,7 @@ class Square(main.pygame.sprite.Sprite):
         self.y = y
     def render(self):
         main.pygame.draw.rect(main.screen, self.colour, [
-            int(main.SCREEN_WIDTH - (main.square_size * self.x) - ((main.SCREEN_WIDTH - (main.square_size * 8)) / 2)),
+            int(main.SCREEN_WIDTH/2 - (main.square_size * 5) + (self.x * main.square_size)),
             main.square_size * self.y,
             main.square_size,
             main.square_size

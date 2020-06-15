@@ -35,7 +35,7 @@ black_square = (135, 89, 19)
 square_size = math.floor(SCREEN_HEIGHT / 10)
 SQUARE_DIMENSION = 8
 
-board_x_offset = int(SCREEN_WIDTH/2 - (square_size * 6))
+board_x_offset = int(SCREEN_WIDTH/2 - (square_size * 4))
 
 background_image = pygame.image.load("./assets/textures/table.png")
 red_piece_texture_path = "./assets/textures/red_piece.png"
@@ -63,12 +63,12 @@ def main():
             if (x + (y % 2)) % 2 == 0:
                 square_colour = black_square
 
-            # print(x, y)
+            print(x, y)
             squares.append(square.Square(square_colour, x, y))
 
     for x in range(1, 8, 2):
         for y in [1, 2, 3, 6, 7, 8]:
-            x_coord = x + (1 - (y % 2))
+            x_coord = x + (y % 2)
             y_coord = y
             team = 0 if y < 5 else 1 
             for loop_square in squares:
@@ -81,7 +81,7 @@ def main():
     #             if loop_square.x == x and loop_square.y == y:
     #                 pieces.append(ghost_piece.GhostPiece(loop_square))
     
-    pieces[3].move_piece()
+    # pieces[3].move_piece()
 
     while RUNNING: # main game loop
         # screen.blit(background_image, (0, 0)) # display background image
@@ -100,6 +100,7 @@ def main():
         mouse_pressed = pygame.mouse.get_pressed()
         mouse_pos_x, mouse_pos_y = mouse_pos
 
+
         if mouse_pressed[0]:
             for loop_piece in pieces:
                 """
@@ -114,6 +115,8 @@ def main():
                     *     maybe it would be better to detect the clicks on 
                     *     squares and not pieces but maybe that doesnt change anything
                 """
+                print("loop piece x: " + str(loop_piece.x * square_size + board_x_offset))
+                print("mouse: " + str(mouse_pos_x))
                 if(
                     loop_piece.x * square_size + board_x_offset < mouse_pos_x and
                     (loop_piece.x + 1) * square_size + board_x_offset > mouse_pos_x and
@@ -122,6 +125,7 @@ def main():
                 ):
                     # if mouse_collide(piece, piece.Piece, True) and mouse_pressed[0]: # detects if the 
                     pygame.draw.circle(screen, (255, 255, 255), mouse_pos, 25)
+                    loop_piece.move_piece()
         
 
         for event in pygame.event.get(): # process every event
