@@ -79,7 +79,7 @@ class Piece(main.pygame.sprite.Sprite):
                 if loop_square.x == self.x + 1 and loop_square.y == self.y_move:
                     print("x = " + str(loop_square.x))
                     print("y = " + str(loop_square.y))
-                    main.ghost_pieces.append(main.ghost_piece.GhostPiece(loop_square))
+                    main.ghost_pieces.append(main.ghost_piece.GhostPiece(loop_square, self))
             print("drawing right circle")
             # print(int(y_move * main.square_size) + 2)
 
@@ -104,7 +104,7 @@ class Piece(main.pygame.sprite.Sprite):
                 if loop_square.x == self.x - 1 and loop_square.y == self.y_move:
                     print("x = " + str(loop_square.x))
                     print("y = " + str(loop_square.y))
-                    main.ghost_pieces.append(main.ghost_piece.GhostPiece(loop_square))
+                    main.ghost_pieces.append(main.ghost_piece.GhostPiece(loop_square, self))
             print("lrawing deft circle")
             # main.pygame.draw.circle(
             #     main.screen,
