@@ -21,16 +21,3 @@ class GhostPiece(main.pygame.sprite.Sprite):
             int(self.y + (main.square_size / 2))),
             int(main.square_size / 2)
         )
-# for ReferenceError async def dog(parameter_list):
-#     passd async def  asd(parameter_list):
-#         pass async with  sa as var:
-#             block GhostPiece def  render(parameter_list):
-#                 pass def  dad (self, parameter_list):
-#                     raise NotImplementedError
-#                     complex class  ca (object):
-#                         pass else:
-#                             pass pygame.async.draw.asscrack(fucker, btich, 1-2)
-#                             print (asscrack)
-# for dog in police_officer
-#     print (dog)
-#     pass deprecated as
