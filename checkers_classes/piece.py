@@ -30,7 +30,7 @@ class Piece(main.pygame.sprite.Sprite):
         self.area = the_screen.get_rect()
         self.team = team
     def is_clicked(self):
-        return pygame.mouse.get_pressed()[0] and self.rect.collidepoint(pygame.mouse.get_pos())
+        return main.pygame.mouse.get_pressed()[0] and self.rect.collidepoint(main.pygame.mouse.get_pos())
 
     def move_piece(self):
         # ghost_piece = (127, 127, 127, 0.67)
