@@ -98,7 +98,7 @@ def main():
         mouse_pressed = pygame.mouse.get_pressed()
         if mouse_pressed[0]:
             if mouse_collide(piece, piece.Piece, True) and mouse_pressed[0]:
-              pygame.draw.circle(screen, (255, 255, 255), mouse_pos, 25)
+                pygame.draw.circle(screen, (255, 255, 255), mouse_pos, 25)
         
 
         for event in pygame.event.get(): # process every event
