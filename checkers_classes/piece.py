@@ -1,5 +1,6 @@
 import sys
 import __main__ as main
+# import "../checkers_classes/ghost_piece" as ghost_piece
 sys.path.append("..")
 
 class Piece(main.pygame.sprite.Sprite):
@@ -64,7 +65,11 @@ class Piece(main.pygame.sprite.Sprite):
                 
         # Draws a ghost piece if they can move right/left
         if can_move_right:
-            pass
+            for loop_square in main.squares:
+                if loop_square.x == self.x + 1 and loop_square.y == self.y_move:
+                    print("x = " + str(loop_piece.x))
+                    print("y = " + str(loop_piece.y))
+                    main.ghost_pieces.append(main.ghost_piece.GhostPiece(loop_square))
             # print("drawing right circle")
             # print(int(y_move * main.square_size) + 2)
 
