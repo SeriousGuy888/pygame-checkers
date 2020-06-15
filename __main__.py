@@ -35,6 +35,8 @@ black_square = (135, 89, 19)
 square_size = math.floor(SCREEN_HEIGHT / 10)
 SQUARE_DIMENSION = 8
 
+board_x_offset = int(SCREEN_WIDTH - ((SCREEN_WIDTH - (square_size * 8)) / 2))
+
 background_image = pygame.image.load("./assets/textures/table.png")
 red_piece_texture_path = "./assets/textures/red_piece.png"
 red_piece_sel_texture_path = "./assets/textures/glowing_red_piece.png"
@@ -82,7 +84,7 @@ def main():
     pieces[3].move_piece()
 
     while RUNNING: # main game loop
-        screen.blit(background_image, (0, 0)) # display background image
+        # screen.blit(background_image, (0, 0)) # display background image
         for loop_square in squares: # process all the squares
             loop_square.render()
         for loop_piece in pieces: # process all the pieces
@@ -100,9 +102,26 @@ def main():
 
         if mouse_pressed[0]:
             for loop_piece in pieces:
-                if loop_piece.x - 1 * square_size < mouse_pos_x and loop_piece.x + 1 * square_size < mouse_pos_x and loop_piece.y * square_size < mouse_pos_y and (loop_piece.y + 1) * square_size  > mouse_pos_y:
-                    # if mouse_collide(piece, piece.Piece, True) and mouse_pressed[0]: # detects if the 
-                    pygame.draw.circle(screen, (255, 255, 255), mouse_pos, 25)
+                """
+                    todo: Finish ability to detect clicks on pieces.
+                    *     board_x_offset is meant to store the x offset the leftmost squares
+                    *     it doesnt seem to work however and i dont know why it seems that by
+                    *     adding the x offset the checkerboard is calculated too far
+                    *     right, yet without adding it, it calculates too far left.
+                    *     yet, the x offset variable is calculated with the same formula used to calculate
+                    *     square positions everywhere else and somehow it doesnt work here.
+                    *     in summary, i havent a clue what im doing
+                    *     maybe it would be better to detect the clicks on 
+                    *     squares and not pieces but maybe that doesnt change anything
+                """
+                # if(
+                #     loop_piece.x * square_size + board_x_offset < mouse_pos_x and
+                #     (loop_piece.x + 1) * square_size + board_x_offset > mouse_pos_x and
+                #     loop_piece.y * square_size < mouse_pos_y and
+                #     (loop_piece.y + 1) * square_size > mouse_pos_y
+                # ):
+                #     # if mouse_collide(piece, piece.Piece, True) and mouse_pressed[0]: # detects if the 
+                #     pygame.draw.circle(screen, (255, 255, 255), mouse_pos, 25)
         
 
         for event in pygame.event.get(): # process every event
