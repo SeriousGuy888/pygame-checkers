@@ -84,7 +84,7 @@ def main():
     # pieces[3].move_piece()
 
     while RUNNING: # main game loop
-        # screen.blit(background_image, (0, 0)) # display background image
+        screen.blit(background_image, (0, 0)) # display background image
         for loop_square in squares: # process all the squares
             loop_square.render()
         for loop_piece in pieces: # process all the pieces
