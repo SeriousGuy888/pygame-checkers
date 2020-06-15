@@ -4,11 +4,13 @@ import __main__ as main
 sys.path.append("..")
 
 class Piece(main.pygame.sprite.Sprite):
-    def __init__(self, team, square):
+    def __init__(self, team, square, selected):
         main.pygame.sprite.Sprite.__init__(self)
 
         self.x = square.x
         self.y = square.y
+
+        self.selected = selected
         
         if team == 0:
             img = main.red_piece_texture_path
@@ -38,15 +40,9 @@ class Piece(main.pygame.sprite.Sprite):
 
         main.ghost_pieces = []
         for loop_piece in main.pieces:
-            if loop_piece.team == 0:
-                loop_piece.image = main.red_piece_texture_path
-            if loop_piece.team == 1:
-                loop_piece.image = main.black_piece_texture_path
+            loop_piece.selected = False
 
-        self.image = main.red_piece_sel_texture_path
-
-        if self.team == 1:
-            self.image = main.black_piece_sel_texture_path
+        self.selected = True
 
         can_move_left = self.x > 1 # As long as it isn't on the far left it defaults to being able to move left
         can_move_right = self.x < 8 # As long as it isn't on the far right it defaults to being able to move right
@@ -58,7 +54,7 @@ class Piece(main.pygame.sprite.Sprite):
 
                 if loop_piece.x == self.x + 1 and loop_piece.y == self.y_move and can_move_right or jump_count > 0: # checks if there is a piece blocking the path
                     can_move_right = False # makes it not able to move if theres a piece blocking the path
-                    print("you cant shirt box move right")
+                    # print("you cant shirt box move right")
                     if loop_piece.team != self.team: # if the piece that is blocking the path is on the other team, then
                         checking_jumps = loop_piece.can_be_jumped("right", self.jump_y_move) # checks if the piece in the path can be jumped
                         if checking_jumps: # if it can be jumped, then
@@ -67,7 +63,7 @@ class Piece(main.pygame.sprite.Sprite):
 
                 if loop_piece.x == self.x - 1 and loop_piece.y == self.y_move or jump_count > 0:
                     can_move_left = False # Makes it not able to move if theres a piece blocking the path
-                    print("ytard cant move left")
+                    # print("ytard cant move left")
                     if loop_piece.team != self.team: # If the piece that is blocking the path is on the other team, then
                         checking_jumps = loop_piece.can_be_jumped("left", self.jump_y_move) # Checks if the piece in the path can be jumped
                         if checking_jumps: # If it can be jumped, then
@@ -139,9 +135,15 @@ class Piece(main.pygame.sprite.Sprite):
 
 
     def render(self):
+        img = self.image
+        if self.selected:
+            if self.team == 0:
+                img = main.red_piece_sel_texture_path
+            if self.team == 1:
+                img = main.black_piece_sel_texture_path
         main.screen.blit(
             main.pygame.transform.scale( # resize to fit squares
-                main.pygame.image.load(self.image), # the images
+                main.pygame.image.load(img), # the images
                 (main.square_size, main.square_size) # image dimensions
             ),
             ( # pixel location

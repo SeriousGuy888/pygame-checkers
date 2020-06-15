@@ -73,7 +73,7 @@ def main():
             team = 0 if y < 5 else 1 
             for loop_square in squares:
                 if loop_square.x == x_coord and loop_square.y == y_coord:
-                    pieces.append(piece.Piece(team, loop_square))
+                    pieces.append(piece.Piece(team, loop_square, False))
     
     # for x in range(2, 7):
     #     for y in range(3, 6):
