@@ -1,5 +1,6 @@
 import sys
 import __main__ as main
+# import "../checkers_classes/ghost_piece" as ghost_piece
 sys.path.append("..")
 
 class Piece(main.pygame.sprite.Sprite):
@@ -13,10 +14,14 @@ class Piece(main.pygame.sprite.Sprite):
             img = main.red_piece_texture_path
             self.y_move = self.y + 1 # y_move is the y direction the piece can move. It's saved as the y it can go to on a move
             self.jump_y_move = self.y + 2 # This is y_move but for jumping
+            self.backwards_y_move = self.y - 1
+            self.backwards_jump_y_move = self.y - 2
         elif team == 1:
             img = main.black_piece_texture_path
             self.y_move = self.y - 1 # y_move is the y direction the piece can move. It's saved as the y it can go to on a move
             self.jump_y_move = self.y - 2 # This is y_move but for jumping
+            self.backwards_y_move = self.y + 1
+            self.backwards_jump_y_move = self.y + 2
         else:
             print("duck you. you broke everything")
 
@@ -29,6 +34,8 @@ class Piece(main.pygame.sprite.Sprite):
 
     def move_piece(self):
         # ghost_piece = (127, 127, 127, 0.67)
+        print(self.x)
+        print(self.y)
 
         self.image = main.red_piece_sel_texture_path
 
@@ -66,7 +73,11 @@ class Piece(main.pygame.sprite.Sprite):
                 
         # Draws a ghost piece if they can move right/left
         if can_move_right:
-            pass
+            for loop_square in main.squares:
+                if loop_square.x == self.x + 1 and loop_square.y == self.y_move:
+                    print(f"x = {str(loop_square.x)}")
+                    print(f"y = {str(loop_square.y)}")
+                    main.ghost_pieces.append(main.ghost_piece.GhostPiece(loop_square))
             # print("drawing right circle")
             # print(int(y_move * main.square_size) + 2)
 
@@ -124,7 +135,7 @@ class Piece(main.pygame.sprite.Sprite):
                 (main.square_size, main.square_size) # image dimensions
             ),
             ( # pixel location
-                main.math.floor(main.SCREEN_WIDTH - (main.square_size * self.x) - ((main.SCREEN_WIDTH - (main.square_size * 8)) / 2)),
+                int(main.SCREEN_WIDTH - (main.square_size * self.x) - ((main.SCREEN_WIDTH - (main.square_size * 8)) / 2)),
                 self.y * main.square_size
             )
         )
