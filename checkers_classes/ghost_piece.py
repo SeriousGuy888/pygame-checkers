@@ -11,13 +11,13 @@ class GhostPiece(main.pygame.sprite.Sprite):
 
 
     def render(self):
-        ghost_piece = (127, 127, 127)
-        main.pygame.draw.circle(
-            main.screen,
-            ghost_piece,
-            (
-                int(main.SCREEN_WIDTH - (main.square_size * self.x) - ((main.SCREEN_WIDTH - (main.square_size * 8)) / 2) + (main.square_size / 2)),
-                int((self.y * main.square_size) + (main.square_size / 2))
+        main.screen.blit(
+            main.pygame.transform.scale( # resize to fit squares
+                main.pygame.image.load(main.ghost_piece_texture_path), # the images
+                (main.square_size, main.square_size) # image dimensions
             ),
-            int(main.square_size / 2)
+            ( # pixel location
+                int(main.SCREEN_WIDTH - (main.square_size * self.x) - ((main.SCREEN_WIDTH - (main.square_size * 8)) / 2)),
+                self.y * main.square_size
+            )
         )

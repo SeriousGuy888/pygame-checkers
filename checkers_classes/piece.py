@@ -29,6 +29,8 @@ class Piece(main.pygame.sprite.Sprite):
         the_screen = main.pygame.display.get_surface() # get the screen variable i think
         self.area = the_screen.get_rect()
         self.team = team
+    def is_clicked(self):
+        return main.pygame.mouse.get_pressed()[0] and self.rect.collidepoint(main.pygame.mouse.get_pos())
 
     def move_piece(self):
         # ghost_piece = (127, 127, 127, 0.67)
@@ -137,7 +139,7 @@ class Piece(main.pygame.sprite.Sprite):
                 (main.square_size, main.square_size) # image dimensions
             ),
             ( # pixel location
-                main.math.floor(main.SCREEN_WIDTH - (main.square_size * self.x) - ((main.SCREEN_WIDTH - (main.square_size * 8)) / 2)),
+                int(main.SCREEN_WIDTH - (main.square_size * self.x) - ((main.SCREEN_WIDTH - (main.square_size * 8)) / 2)),
                 self.y * main.square_size
             )
         )
