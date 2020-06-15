@@ -95,7 +95,7 @@ def main():
             loop_ghost_piece.render()
         
 
-        mouse_collide = pygame.sprite.spritecollide
+        # mouse_collide = pygame.sprite.spritecollide
         mouse_pos = pygame.mouse.get_pos()
         mouse_pressed = pygame.mouse.get_pressed()
         mouse_pos_x, mouse_pos_y = mouse_pos
