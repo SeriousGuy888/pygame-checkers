@@ -8,6 +8,7 @@ class GhostPiece(main.pygame.sprite.Sprite):
 
         self.x = square.x
         self.y = square.y
+        self.ghosted_piece = ghosted_piece
 
 
     def render(self):
