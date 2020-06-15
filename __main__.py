@@ -79,7 +79,9 @@ def main():
             loop_square.render()
         for loop_piece in pieces: # process all the pieces
             loop_piece.render()
-        for loop_ghost_piece in ghost_pieces:
+        for loop_king_piece in king_pieces: # process all the king pieces
+            loop_king_piece.render()
+        for loop_ghost_piece in ghost_pieces: # process all the ghost pieces
             loop_ghost_piece.render()
         
 
