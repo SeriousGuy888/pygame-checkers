@@ -35,7 +35,7 @@ black_square = (135, 89, 19)
 square_size = math.floor(SCREEN_HEIGHT / 10)
 SQUARE_DIMENSION = 8
 
-board_x_offset = int(SCREEN_WIDTH/2 - (square_size * 4))
+board_x_offset = int(SCREEN_WIDTH / 2 - (square_size * 4))
 
 background_image = pygame.image.load("./assets/textures/table.png")
 red_piece_texture_path = "./assets/textures/red_piece.png"
@@ -103,20 +103,10 @@ def main():
 
         if mouse_pressed[0]:
             for loop_piece in pieces:
-                """
-                    todo: Finish ability to detect clicks on pieces.
-                    *     board_x_offset is meant to store the x offset the leftmost squares
-                    *     it doesnt seem to work however and i dont know why it seems that by
-                    *     adding the x offset the checkerboard is calculated too far
-                    *     right, yet without adding it, it calculates too far left.
-                    *     yet, the x offset variable is calculated with the same formula used to calculate
-                    *     square positions everywhere else and somehow it doesnt work here.
-                    *     in summary, i havent a clue what im doing
-                    *     maybe it would be better to detect the clicks on 
-                    *     squares and not pieces but maybe that doesnt change anything
-                """
-                print("loop piece x: " + str(loop_piece.x * square_size + board_x_offset))
-                print("mouse: " + str(mouse_pos_x))
+                # todo: fix x coordinates thing or something
+
+                # print("loop piece x: " + str(loop_piece.x * square_size + board_x_offset))
+                # print("mouse: " + str(mouse_pos_x))
                 if(
                     loop_piece.x * square_size + board_x_offset < mouse_pos_x and
                     (loop_piece.x + 1) * square_size + board_x_offset > mouse_pos_x and
@@ -136,6 +126,8 @@ def main():
                 RUNNING = False # kills stuffs :D
 
         # pieces[3].move_piece()
+
+        # print(f"Ghost piece count: {len(ghost_pieces)}")
 
         pygame.display.update()
         pygame.display.flip() # display the display to the display

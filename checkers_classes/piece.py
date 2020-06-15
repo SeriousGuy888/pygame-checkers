@@ -33,9 +33,15 @@ class Piece(main.pygame.sprite.Sprite):
         return main.pygame.mouse.get_pressed()[0] and self.rect.collidepoint(main.pygame.mouse.get_pos())
 
     def move_piece(self):
-        # ghost_piece = (127, 127, 127, 0.67)
-        print(self.x)
-        print(self.y)
+        # print(self.x)
+        # print(self.y)
+
+        main.ghost_pieces = []
+        for loop_piece in main.pieces:
+            if loop_piece.team == 0:
+                loop_piece.image = main.red_piece_texture_path
+            if loop_piece.team == 1:
+                loop_piece.image = main.black_piece_texture_path
 
         self.image = main.red_piece_sel_texture_path
 
