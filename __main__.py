@@ -54,6 +54,18 @@ king_pieces = []
 ghost_pieces = []
 squares = []
 
+# * non-functional function
+# def mouse_overlapping(x, y, width, height, mouse_x, mouse_y):
+#     if(
+#         (x - 1) * width < mouse_x and
+#         x * width > mouse_x and
+#         y * height < mouse_y and
+#         (y + 1) * height > mouse_y
+#     ):
+#         return True
+#     else:
+#         return False
+
 def main():
     RUNNING = True # running variable - will be set to false when x is pressed, quitting the program
     for x in range(1, SQUARE_DIMENSION + 1):
