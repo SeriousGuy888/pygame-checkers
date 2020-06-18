@@ -44,6 +44,12 @@ black_piece_texture_path = "./assets/textures/black_piece.png"
 black_piece_sel_texture_path = "./assets/textures/glowing_black_piece.png"
 ghost_piece_texture_path = "./assets/textures/ghost_piece.png"
 
+move_sounds = [
+    pygame.mixer.Sound("./assets/sfx/move1.wav"),
+    pygame.mixer.Sound("./assets/sfx/move2.wav"),
+    pygame.mixer.Sound("./assets/sfx/move3.wav")
+]
+
 # * red down; black up
 
 
@@ -130,6 +136,7 @@ def main():
                     loop_ghost_piece.y * square_size < mouse_pos_y and
                     (loop_ghost_piece.y + 1) * square_size > mouse_pos_y
                 ):
+                    pygame.mixer.Sound.play(random.choice(move_sounds))
                     loop_ghost_piece.move_ghosted_piece()
         
 
