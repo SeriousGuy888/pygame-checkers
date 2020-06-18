@@ -7,8 +7,10 @@ class Piece(main.pygame.sprite.Sprite):
     def __init__(self, team, square, selected):
         main.pygame.sprite.Sprite.__init__(self)
 
+        self.square = square
         self.x = square.x
         self.y = square.y
+        self.jump_x = self.x
 
         self.selected = selected
         
@@ -37,6 +39,9 @@ class Piece(main.pygame.sprite.Sprite):
     def move_piece(self):
         # print(self.x)
         # print(self.y)
+        self.y_move = self.y + (1 - (self.team * 2))
+        self.jump_y_move = self.y_move + (1 - (self.team * 2))
+        self.jump_x = self.x
 
         main.ghost_pieces = []
         for loop_piece in main.pieces:
@@ -52,35 +57,54 @@ class Piece(main.pygame.sprite.Sprite):
         while checking_jumps: 
             for loop_piece in main.pieces:
 
-                if loop_piece.x == self.x + 1 and loop_piece.y == self.y_move and can_move_right or jump_count > 0: # checks if there is a piece blocking the path
+                #! I dont think it can jump downwards
+
+                if loop_piece.x == self.x + 1 and loop_piece.y == self.y_move: # checks if there is a piece blocking the path
                     can_move_right = False # makes it not able to move if theres a piece blocking the path
                     # print("you cant shirt box move right")
                     if loop_piece.team != self.team: # if the piece that is blocking the path is on the other team, then
-                        checking_jumps = loop_piece.can_be_jumped("right", self.jump_y_move) # checks if the piece in the path can be jumped
+                        checking_jumps = loop_piece.can_be_jumped(2, self) # checks if the piece in the path can be jumped
                         if checking_jumps: # if it can be jumped, then
                             # main.pygame.draw.circle(main.screen, ghost_piece, (self.x + 2.5, y_move * 2 + 0.5)) # Creates a gray circle which is an option to move
+                            print("old jump_y_move: " + str(self.jump_y_move))
                             jump_count += 1 # Increases jump count 
+                            self.jump_y_move += int((1 - (self.team * 2)) * 2)
+                            self.y_move += int((1 - (self.team * 2)) * 2)
+                            # self.jump_x
+                            # checking_jumps = False
+                            print("new jump_y_move: " + str(self.jump_y_move))    
+                            # main.ghost_pieces.append(main.ghost_piece.GhostPiece(loop_piece.square, self))
 
-                if loop_piece.x == self.x - 1 and loop_piece.y == self.y_move or jump_count > 0:
+
+                if loop_piece.x == self.x - 1 and loop_piece.y == self.y_move:
                     can_move_left = False # Makes it not able to move if theres a piece blocking the path
                     # print("ytard cant move left")
                     if loop_piece.team != self.team: # If the piece that is blocking the path is on the other team, then
-                        checking_jumps = loop_piece.can_be_jumped("left", self.jump_y_move) # Checks if the piece in the path can be jumped
+                        checking_jumps = loop_piece.can_be_jumped(-2, self) # Checks if the piece in the path can be jumped
                         if checking_jumps: # If it can be jumped, then
                             # main.pygame.draw.circle(main.screen, ghost_piece, (self.x - 2.5, y_move * 2 + 0.5)) # Creates a gray circle which is an option to move
+                            print("old jump_y_move: " + str(self.jump_y_move))
                             jump_count += 1 # Increases jump count 
+                            self.jump_y_move += (1 - (self.team * 2)) * 2
+                            self.y_move += int((1 - (self.team * 2)) * 2)
+                            # checking_jumps = False
+                            # main.ghost_pieces.append(main.ghost_piece.GhostPiece(loop_piece.square, self))
+                            print("new jump_y_move: " + str(self.jump_y_move))
 
                 else: # If there aren't any pieces in its path don't keep checking for jumps
                     checking_jumps = False # Doesn't check for jumps
                 
         # Draws a ghost piece if they can move right/left
-        if can_move_right:
+        print("right: " + str(can_move_right))
+        print("left: " + str(can_move_left))
+
+        if can_move_right and jump_count < 1:
             for loop_square in main.squares:
                 if loop_square.x == self.x + 1 and loop_square.y == self.y_move:
-                    print("x = " + str(loop_square.x))
-                    print("y = " + str(loop_square.y))
+                    # print("x = " + str(loop_square.x))
+                    # print("y = " + str(loop_square.y))
                     main.ghost_pieces.append(main.ghost_piece.GhostPiece(loop_square, self))
-            print("drawing right circle")
+            # print("drawing right circle")
             # print(int(y_move * main.square_size) + 2)
 
             # x_coord = 0
@@ -99,13 +123,13 @@ class Piece(main.pygame.sprite.Sprite):
             #     ), # y
             #     int(main.square_size / 2) # radius
             # )
-        if can_move_left:
+        if can_move_left and jump_count < 1:
             for loop_square in main.squares:
                 if loop_square.x == self.x - 1 and loop_square.y == self.y_move:
-                    print("x = " + str(loop_square.x))
-                    print("y = " + str(loop_square.y))
+                    # print("x = " + str(loop_square.x))
+                    # print("y = " + str(loop_square.y))
                     main.ghost_pieces.append(main.ghost_piece.GhostPiece(loop_square, self))
-            print("lrawing deft circle")
+            # print("lrawing deft circle")
             # main.pygame.draw.circle(
             #     main.screen,
             #     ghost_piece,
@@ -114,22 +138,25 @@ class Piece(main.pygame.sprite.Sprite):
             #     int(main.square_size / 2)
             # )
 
-    def can_be_jumped(self, x_direction, jumper_y_move):
+    def can_be_jumped(self, x_direction, jumper):
         can_jump = True # Set the default to it being able to be jumped
-        if x_direction == "right": # If it's being jumped to the right
+        if x_direction == 2: # If it's being jumped to the right
             for loop_piece in main.pieces: # Check each piece
-                if loop_piece.x == self.x + 1: # If there's a piece blocking the jump
+                if loop_piece.x == self.x + 1 and loop_piece.y == jumper.jump_y_move: # If there's a piece blocking the jump
                     can_jump = False # It can't be jumped
-                    print("cant be jumped right") # This was for debugging and I might delete it
+                    # print("cant be jumped right") # This was for debugging and I might delete it
 
-        if x_direction == "left": # Same as above but for jumping to the left
+        if x_direction == -2: # Same as above but for jumping to the left
             for loop_piece in main.pieces:
-                if loop_piece.x == self.x - 1 and loop_piece.y == jumper_y_move:
+                if loop_piece.x == self.x - 1 and loop_piece.y == jumper.jump_y_move:
                     can_jump = False
-                    print("cant be jumped left")
+                    # print("cant be jumped left")
 
-        else: # This is mostly for debugging but maybe I'll do something else with it
-            print("is able to be jumped" + x_direction)
+        if can_jump:
+            for loop_square in main.squares:
+                if loop_square.x == jumper.x + x_direction and loop_square.y == jumper.jump_y_move:
+                    main.ghost_pieces.append(main.ghost_piece.GhostPiece(loop_square, jumper))
+
 
         return can_jump # If it doesn't think there's anything blocking the jump it'll return the default but if it's changed to False it'll return that
 
