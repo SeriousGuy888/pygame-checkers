@@ -1,7 +1,5 @@
 import sys
 import __main__ as main
-# import "../checkers_classes/ghost_piece" as ghost_piece
-sys.path.append("..")
 
 class Piece(main.pygame.sprite.Sprite):
     def __init__(self, team, square, selected):

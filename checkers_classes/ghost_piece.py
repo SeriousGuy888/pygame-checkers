@@ -1,6 +1,5 @@
 import sys
 import __main__ as main
-sys.path.append("..")
 
 class GhostPiece(main.pygame.sprite.Sprite):
     def __init__(self, square, ghosted_piece):
