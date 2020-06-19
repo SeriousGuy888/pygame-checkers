@@ -168,9 +168,15 @@ class Piece(main.pygame.sprite.Sprite):
         img = self.image
         if self.selected:
             if self.team == 0:
-                img = main.red_piece_sel_texture_path
+                if self.kinged:
+                    img = main.red_king_piece_sel_texture_path
+                else:
+                    img = main.red_piece_sel_texture_path
             if self.team == 1:
-                img = main.black_piece_sel_texture_path
+                if self.kinged:
+                    img = main.black_king_piece_sel_texture_path
+                else:
+                    img = main.black_piece_sel_texture_path
         main.screen.blit(
             main.pygame.transform.scale( # resize to fit squares
                 main.pygame.image.load(img), # the images
