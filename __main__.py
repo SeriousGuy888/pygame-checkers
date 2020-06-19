@@ -83,7 +83,6 @@ red_donut_monster = "./assets/textures/donut_monster/red_donut_monster_with_trop
 black_donut_monster = "./assets/textures/donut_monster/black_donut_monster_with_trophy.png"
 
 
-
 move_sounds = load_sounds_from_files(get_directory_files("./assets/sfx/move", "*.wav"))
 
 
@@ -179,7 +178,33 @@ def main():
                 RUNNING = False # kills stuffs :D
 
         # pieces[3].move_piece()
-
+        
+        if winning == 0:
+            screen.blit(
+            pygame.transform.scale( # resize to fit squares
+                pygame.image.load("assets/textures/donut_monster/red_donut_monster_with_trophy.png"), # the images
+                (square_size * 4, square_size * 8) # image dimensions
+            ),
+            ( # pixel location
+                # int(main.SCREEN_WIDTH - (main.square_size * self.x) - ((main.SCREEN_WIDTH - (main.square_size * 8)) / 2)),
+                SCREEN_WIDTH - (square_size * 4),
+                square_size
+            )
+        )
+        
+        elif winning == 1
+            screen.blit(
+            pygame.transform.scale( # resize to fit squares
+                pygame.image.load("assets/textures/donut_monster/black_donut_monster_with_trophy.png"), # the images
+                (square_size * 4, square_size * 8) # image dimensions
+            ),
+            ( # pixel location
+                # int(main.SCREEN_WIDTH - (main.square_size * self.x) - ((main.SCREEN_WIDTH - (main.square_size * 8)) / 2)),
+                SCREEN_WIDTH - (square_size * 4),
+                square_size
+            )
+        )
+        
         # print(f"Ghost piece count: {len(ghost_pieces)}")
 
         pygame.display.update()
