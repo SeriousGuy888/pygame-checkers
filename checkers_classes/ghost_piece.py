@@ -37,6 +37,10 @@ class GhostPiece(main.pygame.sprite.Sprite):
         else:
             self.ghosted_piece.selected = False
             main.turn = [1, 0][self.ghosted_piece.team]
+            
+        if [9,1][self.ghosted_piece.team] == self.ghosted_piece.y:
+            self.ghosted_piece.kinged = True
+            self.ghosted_piece.image = [main.black_piece_texture_path, main.red_piece_texture_path][self.ghosted_piece.team]
 
     def render(self):
         main.screen.blit(
