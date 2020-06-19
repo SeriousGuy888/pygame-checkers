@@ -67,13 +67,20 @@ SQUARE_DIMENSION = 8
 board_x_offset = int(SCREEN_WIDTH / 2 - (square_size * (SQUARE_DIMENSION / 2 + 1)))
 
 background_image = pygame.image.load("./assets/textures/table.png")
-red_piece_texture_path = "./assets/textures/red_piece.png"
-red_piece_sel_texture_path = "./assets/textures/glowing_red_piece.png"
-black_piece_texture_path = "./assets/textures/black_piece.png"
-black_piece_sel_texture_path = "./assets/textures/glowing_black_piece.png"
-ghost_piece_texture_path = "./assets/textures/ghost_piece.png"
-red_king_piece_texture_path = "./assets/textures/king_red_piece.png"
-black_king_piece_texture_path = "./assets/textures/king_black_piece.png"
+
+red_piece_texture_path = "./assets/textures/pieces/normal/red_piece.png"
+black_piece_texture_path = "./assets/textures/pieces/normal/black_piece.png"
+red_king_piece_texture_path = "./assets/textures/pieces/normal/king_red_piece.png"
+black_king_piece_texture_path = "./assets/textures/pieces/normal/king_black_piece.png"
+
+red_piece_sel_texture_path = "./assets/textures/pieces/selected/sel_red_piece.png"
+black_piece_sel_texture_path = "./assets/textures/pieces/selected/sel_black_piece.png"
+red_king_piece_sel_texture_path = "./assets/textures/pieces/selected/sel_king_red_piece.png"
+black_king_piece_sel_texture_path = "./assets/textures/pieces/selected/sel_king_black_piece.png"
+
+ghost_piece_texture_path = "./assets/textures/pieces/ghost/ghost_piece.png"
+
+
 
 move_sounds = load_sounds_from_files(get_directory_files("./assets/sfx/move", "*.wav"))
 
