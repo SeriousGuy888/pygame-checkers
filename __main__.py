@@ -17,7 +17,6 @@ from pygame.locals import (
 )
 
 from checkers_classes import piece
-from checkers_classes import king_piece
 from checkers_classes import ghost_piece
 from checkers_classes import square
 
