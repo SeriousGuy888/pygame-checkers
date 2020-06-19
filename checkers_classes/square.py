@@ -1,4 +1,3 @@
-import sys
 import __main__ as main
 
 class Square(main.pygame.sprite.Sprite):

@@ -1,4 +1,3 @@
-import sys
 import __main__ as main
 
 def override(f):
