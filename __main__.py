@@ -85,6 +85,7 @@ pieces = []
 king_pieces = []
 ghost_pieces = []
 squares = []
+jumped_pieces = []
 turn = 1
 
 def main():

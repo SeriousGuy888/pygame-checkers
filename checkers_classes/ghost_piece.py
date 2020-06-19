@@ -1,13 +1,14 @@
 import __main__ as main
 
 class GhostPiece(main.pygame.sprite.Sprite):
-    def __init__(self, square, ghosted_piece, is_jumping_piece):
+    def __init__(self, square, ghosted_piece, is_jumping_piece, piece_being_jumped):
         main.pygame.sprite.Sprite.__init__(self)
 
         self.x = square.x
         self.y = square.y
         self.ghosted_piece = ghosted_piece
         self.is_jumping_piece = is_jumping_piece
+        self.piece_being_jumped = piece_being_jumped
 
     def move_ghosted_piece(self):
         self.ghosted_piece.x = self.x
@@ -15,8 +16,12 @@ class GhostPiece(main.pygame.sprite.Sprite):
         self.ghosted_piece.y_move = self.ghosted_piece.y_move + 1 if self.ghosted_piece.team == 0 else self.ghosted_piece.y_move - 1
         main.ghost_pieces = []
         if self.is_jumping_piece:
-            self.ghosted_piece.jump_count += 1
+            self.ghosted_piece.jump_count = self.ghosted_piece.jump_count + 1
+            print("ghosted jump count: " + str(self.ghosted_piece.jump_count))
+            main.jumped_pieces.append(self.piece_being_jumped)
+            main.pieces.remove(self.piece_being_jumped)
             self.ghosted_piece.move_piece()
+
         else:
             self.ghosted_piece.selected = False
             main.turn = [1, 0][self.ghosted_piece.team]
