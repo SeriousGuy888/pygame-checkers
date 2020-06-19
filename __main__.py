@@ -64,7 +64,7 @@ black_square = (135, 89, 19)
 square_size = math.floor(SCREEN_HEIGHT / 10)
 SQUARE_DIMENSION = 8
 
-board_x_offset = int(SCREEN_WIDTH / 2 - (square_size * 4))
+board_x_offset = int(SCREEN_WIDTH / 2 - (square_size * (SQUARE_DIMENSION / 2 + 1)))
 
 background_image = pygame.image.load("./assets/textures/table.png")
 red_piece_texture_path = "./assets/textures/red_piece.png"
@@ -136,8 +136,8 @@ def main():
         if mouse_pressed[0]:
             for loop_piece in pieces:
                 if(
-                    (loop_piece.x - 1) * square_size + board_x_offset < mouse_pos_x and
-                    loop_piece.x * square_size + board_x_offset > mouse_pos_x and
+                    loop_piece.x * square_size + board_x_offset < mouse_pos_x and
+                    (loop_piece.x + 1) * square_size + board_x_offset > mouse_pos_x and
                     loop_piece.y * square_size < mouse_pos_y and
                     (loop_piece.y + 1) * square_size > mouse_pos_y
                 ):
@@ -145,8 +145,8 @@ def main():
 
             for loop_ghost_piece in ghost_pieces:
                 if(
-                    (loop_ghost_piece.x - 1) * square_size + board_x_offset < mouse_pos_x and
-                    loop_ghost_piece.x * square_size + board_x_offset > mouse_pos_x and
+                    loop_ghost_piece.x * square_size + board_x_offset < mouse_pos_x and
+                    (loop_ghost_piece.x + 1) * square_size + board_x_offset > mouse_pos_x and
                     loop_ghost_piece.y * square_size < mouse_pos_y and
                     (loop_ghost_piece.y + 1) * square_size > mouse_pos_y
                 ):

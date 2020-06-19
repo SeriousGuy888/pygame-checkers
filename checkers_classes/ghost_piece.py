@@ -8,6 +8,10 @@ class GhostPiece(main.pygame.sprite.Sprite):
         self.y = square.y
         self.ghosted_piece = ghosted_piece
 
+    def move_ghosted_piece(self):
+        self.ghosted_piece.x = self.x
+        self.ghosted_piece.y = self.y
+        self.ghosted_piece.y_move = self.ghosted_piece.y_move + 1 if self.ghosted_piece.team == 0 else self.ghosted_piece.y_move - 1
 
     def render(self):
         main.screen.blit(
@@ -17,12 +21,7 @@ class GhostPiece(main.pygame.sprite.Sprite):
             ),
             ( # pixel location
                 # int(main.SCREEN_WIDTH - (main.square_size * self.x) - ((main.SCREEN_WIDTH - (main.square_size * 8)) / 2)),
-                int(main.SCREEN_WIDTH / 2 - (main.square_size * 5) + (self.x * main.square_size)),
+                main.board_x_offset + (self.x * main.square_size),
                 self.y * main.square_size
             )
         )
-   
-    def move_ghosted_piece(self):
-        self.ghosted_piece.x = self.x
-        self.ghosted_piece.y = self.y
-        self.ghosted_piece.y_move = self.ghosted_piece.y_move + 1 if self.ghosted_piece.team == 0 else self.ghosted_piece.y_move - 1
