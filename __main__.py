@@ -87,6 +87,7 @@ ghost_pieces = []
 squares = []
 jumped_pieces = []
 turn = 1
+winner = 2
 
 def main():
     RUNNING = True # running variable - will be set to false when x is pressed, quitting the program

@@ -97,39 +97,14 @@ class Piece(main.pygame.sprite.Sprite):
                     # print("x = " + str(loop_square.x))
                     # print("y = " + str(loop_square.y))
                     main.ghost_pieces.append(main.ghost_piece.GhostPiece(loop_square, self, False, False))
-            # print("drawing right circle")
-            # print(int(y_move * main.square_size) + 2)
-
-            # x_coord = 0
-            # y_coord = 0
-            # for square in main.squares:
-            #     if square.x == self.x * 3 and square.y == self.y * 3:
-            #         x_coord = square.x
-            #         y_coord = square.y
-                    
-            # main.pygame.draw.circle(
-            #     main.screen,
-            #     ghost_piece,
-            #     (
-            #         x_coord * main.square_size,
-            #         y_coord * main.square_size
-            #     ), # y
-            #     int(main.square_size / 2) # radius
-            # )
+           
         if can_move_left and self.jump_count < 1:
             for loop_square in main.squares:
                 if loop_square.x == self.x - 1 and loop_square.y == self.y_move:
                     # print("x = " + str(loop_square.x))
                     # print("y = " + str(loop_square.y))
                     main.ghost_pieces.append(main.ghost_piece.GhostPiece(loop_square, self, False, False))
-            # print("lrawing deft circle")
-            # main.pygame.draw.circle(
-            #     main.screen,
-            #     ghost_piece,
-            #     (self.x - 1 + int((main.square_size / 2)),
-            #     int(y_move + (main.square_size / 2))),
-            #     int(main.square_size / 2)
-            # )
+           
 
         if self.jump_count > 0 and checking_jumps == False:
             self.jump_count = 0

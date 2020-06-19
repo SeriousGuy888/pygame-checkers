@@ -21,6 +21,18 @@ class GhostPiece(main.pygame.sprite.Sprite):
             main.jumped_pieces.append(self.piece_being_jumped)
             main.pieces.remove(self.piece_being_jumped)
             self.ghosted_piece.move_piece()
+            if len(main.pieces) <= 8:
+                red_pieces = 0
+                black_pieces = 0
+                for loop_piece in main.pieces:
+                    if loop_piece.team == 0:
+                        red_pieces += 1
+                    elif loop_piece.team == 1:
+                        black_pieces += 1
+                if red_pieces == 0:
+                    main.winner = 1
+                if black_pieces == 0:
+                    main.winner = 0
 
         else:
             self.ghosted_piece.selected = False
