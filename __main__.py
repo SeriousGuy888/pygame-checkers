@@ -72,6 +72,8 @@ red_piece_sel_texture_path = "./assets/textures/glowing_red_piece.png"
 black_piece_texture_path = "./assets/textures/black_piece.png"
 black_piece_sel_texture_path = "./assets/textures/glowing_black_piece.png"
 ghost_piece_texture_path = "./assets/textures/ghost_piece.png"
+red_king_piece_texture_path = "./assets/textures/king_red_piece.png"
+black_king_piece_texture_path = "./assets/textures/king_black_piece.png"
 
 move_sounds = load_sounds_from_files(get_directory_files("./assets/sfx/move", "*.wav"))
 
