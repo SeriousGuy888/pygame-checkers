@@ -66,7 +66,7 @@ class Piece(main.pygame.sprite.Sprite):
                             print("old jump_y_move: " + str(self.jump_y_move))
                             jump_count += 1 # Increases jump count 
                             self.jump_y_move += int((1 - (self.team * 2)) * 2)
-                            self.y_move += int((1 - (self.team * 2)) * 2)
+                            # self.y_move += int((1 - (self.team * 2)) * 2)
                             # self.jump_x
                             # checking_jumps = False
                             print("new jump_y_move: " + str(self.jump_y_move))    
@@ -83,7 +83,7 @@ class Piece(main.pygame.sprite.Sprite):
                             print("old jump_y_move: " + str(self.jump_y_move))
                             jump_count += 1 # Increases jump count 
                             self.jump_y_move += (1 - (self.team * 2)) * 2
-                            self.y_move += int((1 - (self.team * 2)) * 2)
+                            # self.y_move += int((1 - (self.team * 2)) * 2)
                             # checking_jumps = False
                             # main.ghost_pieces.append(main.ghost_piece.GhostPiece(loop_piece.square, self))
                             print("new jump_y_move: " + str(self.jump_y_move))
@@ -95,7 +95,7 @@ class Piece(main.pygame.sprite.Sprite):
         print("right: " + str(can_move_right))
         print("left: " + str(can_move_left))
 
-        if can_move_right and jump_count < 1:
+        if can_move_right:
             for loop_square in main.squares:
                 if loop_square.x == self.x + 1 and loop_square.y == self.y_move:
                     # print("x = " + str(loop_square.x))
@@ -120,7 +120,7 @@ class Piece(main.pygame.sprite.Sprite):
             #     ), # y
             #     int(main.square_size / 2) # radius
             # )
-        if can_move_left and jump_count < 1:
+        if can_move_left:
             for loop_square in main.squares:
                 if loop_square.x == self.x - 1 and loop_square.y == self.y_move:
                     # print("x = " + str(loop_square.x))
