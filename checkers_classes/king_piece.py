@@ -1,10 +1,11 @@
 import __main__ as main
 
-def override(f):
+# This looks very nice. I like the @Override annotation even if it doesn't fit in with Python
+def Override(f):
     return f
 
 class KingPiece(main.piece.Piece):
-    @override
+    @Override
     def move_piece(self):
         self.image = main.red_piece_sel_texture_path
 
