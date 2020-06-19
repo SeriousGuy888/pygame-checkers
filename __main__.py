@@ -80,6 +80,9 @@ black_king_piece_sel_texture_path = "./assets/textures/pieces/selected/sel_king_
 
 ghost_piece_texture_path = "./assets/textures/pieces/ghost/ghost_piece.png"
 
+red_donut_monster = "./assets/textures/donut_monster/red_donut_monster_with_trophy.png"
+black_donut_monster = "./assets/textures/donut_monster/black_donut_monster_with_trophy.png"
+
 
 
 move_sounds = load_sounds_from_files(get_directory_files("./assets/sfx/move", "*.wav"))
