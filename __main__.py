@@ -139,6 +139,7 @@ def main():
 
 
         if mouse_pressed[0]:
+            global turn
             for loop_piece in pieces:
                 if(
                     loop_piece.x * square_size + board_x_offset < mouse_pos_x and
@@ -157,6 +158,7 @@ def main():
                     (loop_ghost_piece.y + 1) * square_size > mouse_pos_y
                 ):
                     pygame.mixer.Sound.play(random.choice(move_sounds))
+                    turn = [1, 0][loop_piece.team]
                     loop_ghost_piece.move_ghosted_piece()
         
 
