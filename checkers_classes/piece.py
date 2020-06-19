@@ -40,6 +40,8 @@ class Piece(main.pygame.sprite.Sprite):
         # print(self.y)
         self.y_move = self.y + (1 - (self.team * 2))
         self.jump_y_move = self.y_move + (1 - (self.team * 2))
+        self.backwards_y_move = self.y + (-1 + (self.team * 2))
+        self.backwards_jump_y_move = self.backwards_y_move + (-1 + (self.team * 2))
         self.jump_x = self.x
 
         main.ghost_pieces = []
@@ -51,6 +53,7 @@ class Piece(main.pygame.sprite.Sprite):
         can_move_left = self.x > 1 # As long as it isn't on the far left it defaults to being able to move left
         can_move_right = self.x < 8 # As long as it isn't on the far right it defaults to being able to move right
         can_move_back_left = self.kinged
+        can_move_back_right = self.kinged
         checking_jumps = False # This is so the while loop will go around the fist time 
         # Checks if they can move
         for loop_piece in main.pieces:
@@ -114,6 +117,20 @@ class Piece(main.pygame.sprite.Sprite):
         if can_move_left and self.jump_count < 1:
             for loop_square in main.squares:
                 if loop_square.x == self.x - 1 and loop_square.y == self.y_move:
+                    # print("x = " + str(loop_square.x))
+                    # print("y = " + str(loop_square.y))
+                    main.ghost_pieces.append(main.ghost_piece.GhostPiece(loop_square, self, False, False))
+        
+        if can_move_back_right and self.jump_count < 1:
+            for loop_square in main.squares:
+                if loop_square.x == self.x + 1 and loop_square.y == self.backwards_y_move:
+                    # print("x = " + str(loop_square.x))
+                    # print("y = " + str(loop_square.y))
+                    main.ghost_pieces.append(main.ghost_piece.GhostPiece(loop_square, self, False, False))
+        
+        if can_move_back_left and self.jump_count < 1:
+            for loop_square in main.squares:
+                if loop_square.x == self.x - 1 and loop_square.y == self.backwards_y_move:
                     # print("x = " + str(loop_square.x))
                     # print("y = " + str(loop_square.y))
                     main.ghost_pieces.append(main.ghost_piece.GhostPiece(loop_square, self, False, False))
