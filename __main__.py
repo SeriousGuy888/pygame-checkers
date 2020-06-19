@@ -85,6 +85,7 @@ pieces = []
 king_pieces = []
 ghost_pieces = []
 squares = []
+turn = 1
 
 def main():
     RUNNING = True # running variable - will be set to false when x is pressed, quitting the program
@@ -139,7 +140,8 @@ def main():
                     loop_piece.x * square_size + board_x_offset < mouse_pos_x and
                     (loop_piece.x + 1) * square_size + board_x_offset > mouse_pos_x and
                     loop_piece.y * square_size < mouse_pos_y and
-                    (loop_piece.y + 1) * square_size > mouse_pos_y
+                    (loop_piece.y + 1) * square_size > mouse_pos_y and
+                    loop_piece.team == turn
                 ):
                     loop_piece.move_piece()
 
