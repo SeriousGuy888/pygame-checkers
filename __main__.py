@@ -3,7 +3,10 @@ import sys
 import ctypes
 import math
 import random
+from pathlib import Path
 import pygame
+
+from pygame import mixer
 
 from pygame.locals import (
     K_ESCAPE,
@@ -30,6 +33,32 @@ pygame.display.set_caption("Donut Checkers")
 
 
 
+# * non-functional function
+# def mouse_overlapping(x, y, width, height, mouse_x, mouse_y):
+#     if(
+#         (x - 1) * width < mouse_x and
+#         x * width > mouse_x and
+#         y * height < mouse_y and
+#         (y + 1) * height > mouse_y
+#     ):
+#         return True
+#     else:
+#         return False
+
+def get_directory_files(directory, search_pattern):
+    paths = Path(directory).glob(search_pattern)
+    files = []
+    for path in paths:
+        files.append(str(path))
+    return files
+
+def load_sounds_from_files(path_list):
+    sounds = []
+    for path in path_list:
+        sounds.append(pygame.mixer.Sound(path))
+    return sounds
+
+
 white_square = (209, 168, 107)
 black_square = (135, 89, 19)
 square_size = math.floor(SCREEN_HEIGHT / 10)
@@ -44,11 +73,8 @@ black_piece_texture_path = "./assets/textures/black_piece.png"
 black_piece_sel_texture_path = "./assets/textures/glowing_black_piece.png"
 ghost_piece_texture_path = "./assets/textures/ghost_piece.png"
 
-move_sounds = [
-    pygame.mixer.Sound("./assets/sfx/move1.wav"),
-    pygame.mixer.Sound("./assets/sfx/move2.wav"),
-    pygame.mixer.Sound("./assets/sfx/move3.wav")
-]
+move_sounds = load_sounds_from_files(get_directory_files("./assets/sfx/move", "*.wav"))
+
 
 # * red down; black up
 
@@ -59,18 +85,6 @@ pieces = []
 king_pieces = []
 ghost_pieces = []
 squares = []
-
-# * non-functional function
-# def mouse_overlapping(x, y, width, height, mouse_x, mouse_y):
-#     if(
-#         (x - 1) * width < mouse_x and
-#         x * width > mouse_x and
-#         y * height < mouse_y and
-#         (y + 1) * height > mouse_y
-#     ):
-#         return True
-#     else:
-#         return False
 
 def main():
     RUNNING = True # running variable - will be set to false when x is pressed, quitting the program
