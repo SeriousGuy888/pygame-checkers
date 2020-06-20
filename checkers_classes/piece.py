@@ -104,7 +104,8 @@ class Piece(main.pygame.sprite.Sprite):
         if self.jump_count > 0 and checking_jumps == False:
             self.jump_count = 0
             main.turn = [1, 0][self.team]
-            self.selected = False
+        
+        self.selected = self.team == main.turn
 
     def can_be_jumped(self, x_direction, jumper, jumper_jump_y_move):
         can_jump = True # Set the default to it being able to be jumped
