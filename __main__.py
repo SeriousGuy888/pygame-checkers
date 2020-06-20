@@ -29,6 +29,7 @@ SCREEN_HEIGHT = user32.GetSystemMetrics(1)
 pygame.init() # actual game
 
 screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN) # screen size and stuffs
+pygame.display.set_icon(pygame.image.load("./assets/textures/icon.png"))
 pygame.display.set_caption("Donut Checkers")
 
 def get_directory_files(directory, search_pattern):
