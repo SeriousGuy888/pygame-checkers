@@ -17,11 +17,11 @@ class GhostPiece(main.pygame.sprite.Sprite):
         main.ghost_pieces = []
         if self.is_jumping_piece:
             self.ghosted_piece.jump_count = self.ghosted_piece.jump_count + 1
-            print("ghosted jump count: " + str(self.ghosted_piece.jump_count))
+            # print("ghosted jump count: " + str(self.ghosted_piece.jump_count))
             main.jumped_pieces.append(self.piece_being_jumped)
             main.pieces.remove(self.piece_being_jumped)
             self.ghosted_piece.move_piece()
-            if len(main.pieces) <= 8:
+            if len(main.pieces) <= 12:
                 red_pieces = 0
                 black_pieces = 0
                 for loop_piece in main.pieces:
@@ -38,7 +38,7 @@ class GhostPiece(main.pygame.sprite.Sprite):
             self.ghosted_piece.selected = False
             main.turn = [1, 0][self.ghosted_piece.team]
             
-        if [9,1][self.ghosted_piece.team] == self.ghosted_piece.y:
+        if [8,1][self.ghosted_piece.team] == self.ghosted_piece.y:
             self.ghosted_piece.kinged = True
             self.ghosted_piece.image = [main.red_king_piece_texture_path, main.black_king_piece_texture_path][self.ghosted_piece.team]
 
