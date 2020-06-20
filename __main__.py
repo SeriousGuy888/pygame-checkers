@@ -59,6 +59,8 @@ red_piece_texture_path = "./assets/textures/pieces/normal/red_piece.png"
 black_piece_texture_path = "./assets/textures/pieces/normal/black_piece.png"
 red_king_piece_texture_path = "./assets/textures/pieces/normal/king_red_piece.png"
 black_king_piece_texture_path = "./assets/textures/pieces/normal/king_black_piece.png"
+red_dead_piece_texture_path = "./assets/textures/pieces/dead/dead_red_piece.png"
+black_dead_piece_texture_path = "./assets/textures/pieces/dead/dead_black_piece.png"
 
 red_piece_sel_texture_path = "./assets/textures/pieces/selected/sel_red_piece.png"
 black_piece_sel_texture_path = "./assets/textures/pieces/selected/sel_black_piece.png"
