@@ -17,7 +17,6 @@ class GhostPiece(main.pygame.sprite.Sprite):
         main.ghost_pieces = []
         if self.is_jumping_piece:
             self.ghosted_piece.jump_count = self.ghosted_piece.jump_count + 1
-            # print("ghosted jump count: " + str(self.ghosted_piece.jump_count))
             main.jumped_pieces.append(self.piece_being_jumped)
             main.pieces.remove(self.piece_being_jumped)
             self.ghosted_piece.move_piece()
@@ -49,7 +48,6 @@ class GhostPiece(main.pygame.sprite.Sprite):
                 (main.square_size, main.square_size) # image dimensions
             ),
             ( # pixel location
-                # int(main.SCREEN_WIDTH - (main.square_size * self.x) - ((main.SCREEN_WIDTH - (main.square_size * 8)) / 2)),
                 main.board_x_offset + (self.x * main.square_size),
                 self.y * main.square_size
             )

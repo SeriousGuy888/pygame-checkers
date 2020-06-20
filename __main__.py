@@ -30,20 +30,6 @@ pygame.init() # actual game
 screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN) # screen size and stuffs
 pygame.display.set_caption("Donut Checkers")
 
-
-
-# * non-functional function
-# def mouse_overlapping(x, y, width, height, mouse_x, mouse_y):
-#     if(
-#         (x - 1) * width < mouse_x and
-#         x * width > mouse_x and
-#         y * height < mouse_y and
-#         (y + 1) * height > mouse_y
-#     ):
-#         return True
-#     else:
-#         return False
-
 def get_directory_files(directory, search_pattern):
     paths = Path(directory).glob(search_pattern)
     files = []
@@ -119,14 +105,6 @@ def main():
             for loop_square in squares:
                 if loop_square.x == x_coord and loop_square.y == y_coord:
                     pieces.append(piece.Piece(team, loop_square, False))
-    
-    # for x in range(2, 7):
-    #     for y in range(3, 6):
-    #         for loop_square in squares:
-    #             if loop_square.x == x and loop_square.y == y:
-    #                 pieces.append(ghost_piece.GhostPiece(loop_square))
-    
-    # pieces[3].move_piece()
 
     while RUNNING: # main game loop
         screen.blit(background_image, (0, 0)) # display background image
@@ -187,7 +165,6 @@ def main():
                     (square_size * 4, square_size * 8) # image dimensions
                 ),
                 ( # pixel location
-                    # int(main.SCREEN_WIDTH - (main.square_size * self.x) - ((main.SCREEN_WIDTH - (main.square_size * 8)) / 2)),
                     int(SCREEN_WIDTH / 2 - (square_size * 2)),
                     square_size
                 )
@@ -200,7 +177,6 @@ def main():
                     (square_size * 4, square_size * 8) # image dimensions
                 ),
                 ( # pixel location
-                    # int(main.SCREEN_WIDTH - (main.square_size * self.x) - ((main.SCREEN_WIDTH - (main.square_size * 8)) / 2)),
                     int(SCREEN_WIDTH / 2 - (square_size * 4)),
                     square_size
                 )

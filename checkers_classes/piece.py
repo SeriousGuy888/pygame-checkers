@@ -154,7 +154,6 @@ class Piece(main.pygame.sprite.Sprite):
                 (main.square_size, main.square_size) # image dimensions
             ),
             ( # pixel location
-                # int(main.SCREEN_WIDTH - (main.square_size * self.x) - ((main.SCREEN_WIDTH - (main.square_size * 8)) / 2)),
                 main.board_x_offset + (self.x * main.square_size),
                 self.y * main.square_size
             )
