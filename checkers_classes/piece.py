@@ -71,7 +71,7 @@ class Piece(main.pygame.sprite.Sprite):
                     checking_jumps = loop_piece.can_be_jumped(-2, self, self.backwards_jump_y_move) # Checks if the piece in the path can be jumped
 
         # Draws a ghost piece if they can move right/left
-        print("my jump_count: " + str(self.jump_count))
+        # print("my jump_count: " + str(self.jump_count))
         if can_move_right and self.jump_count < 1:
             for loop_square in main.squares:
                 if loop_square.x == self.x + 1 and loop_square.y == self.y_move:
@@ -99,13 +99,18 @@ class Piece(main.pygame.sprite.Sprite):
                     # print("x = " + str(loop_square.x))
                     # print("y = " + str(loop_square.y))
                     main.ghost_pieces.append(main.ghost_piece.GhostPiece(loop_square, self, False, False))
-           
-
+        
+#         print(self.jump_count)
+#         print(checking_jumps)
+        
         if self.jump_count > 0 and checking_jumps == False:
             self.jump_count = 0
             main.turn = [1, 0][self.team]
+#             print("not my move anymore")
+            self.selected = False
         
-        self.selected = self.team == main.turn
+#         print(self.selected)
+        # self.selected = self.team == main.turn
 
     def can_be_jumped(self, x_direction, jumper, jumper_jump_y_move):
         can_jump = True # Set the default to it being able to be jumped
@@ -132,7 +137,7 @@ class Piece(main.pygame.sprite.Sprite):
 
     def render(self):
         img = self.image
-        if self.selected:
+        if self.selected and main.turn == self.team:
             if self.team == 0:
                 if self.kinged:
                     img = main.red_king_piece_sel_texture_path
