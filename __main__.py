@@ -128,8 +128,10 @@ def show_text(font_file, font_size, text_colour, coords, string):
 
 def clamp(number, minimum, maximum):
     val = number
-    if number < minimum: val = minimum
-    if number > maximum: val = maximum
+    if number < minimum:
+        val = minimum
+    if number > maximum:
+        val = maximum
     return val
 
 def main():
