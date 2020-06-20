@@ -188,7 +188,7 @@ def main():
                 ),
                 ( # pixel location
                     # int(main.SCREEN_WIDTH - (main.square_size * self.x) - ((main.SCREEN_WIDTH - (main.square_size * 8)) / 2)),
-                    SCREEN_WIDTH / 2 - (square_size * 2),
+                    int(SCREEN_WIDTH / 2 - (square_size * 2)),
                     square_size
                 )
             )
@@ -201,7 +201,7 @@ def main():
                 ),
                 ( # pixel location
                     # int(main.SCREEN_WIDTH - (main.square_size * self.x) - ((main.SCREEN_WIDTH - (main.square_size * 8)) / 2)),
-                    SCREEN_WIDTH/2 - (square_size * 4),
+                    int(SCREEN_WIDTH / 2 - (square_size * 4)),
                     square_size
                 )
             )
