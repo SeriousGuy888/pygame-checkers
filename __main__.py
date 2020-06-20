@@ -132,12 +132,12 @@ def main():
         screen.blit(background_image, (0, 0)) # display background image
         for loop_square in squares: # process all the squares
             loop_square.render()
-        for loop_piece in pieces: # process all the pieces
-            loop_piece.render()
-        for loop_king_piece in king_pieces: # process all the king pieces
-            loop_king_piece.render()
-        for loop_ghost_piece in ghost_pieces: # process all the ghost pieces
-            loop_ghost_piece.render()
+
+        if winner != 0 and winner != 1:
+            for loop_piece in pieces: # process all the pieces
+                loop_piece.render()
+            for loop_ghost_piece in ghost_pieces: # process all the ghost pieces
+                loop_ghost_piece.render()
         
 
         # mouse_collide = pygame.sprite.spritecollide
@@ -154,7 +154,8 @@ def main():
                     (loop_piece.x + 1) * square_size + board_x_offset > mouse_pos_x and
                     loop_piece.y * square_size < mouse_pos_y and
                     (loop_piece.y + 1) * square_size > mouse_pos_y and
-                    loop_piece.team == turn
+                    loop_piece.team == turn and
+                    loop_piece.selected == False
                 ):
                     loop_piece.move_piece()
 
@@ -179,7 +180,7 @@ def main():
 
         # pieces[3].move_piece()
         
-        if winning == 0:
+        if winner == 0:
             screen.blit(
             pygame.transform.scale( # resize to fit squares
                 pygame.image.load("assets/textures/donut_monster/red_donut_monster_with_trophy.png"), # the images
@@ -187,12 +188,12 @@ def main():
             ),
             ( # pixel location
                 # int(main.SCREEN_WIDTH - (main.square_size * self.x) - ((main.SCREEN_WIDTH - (main.square_size * 8)) / 2)),
-                SCREEN_WIDTH - (square_size * 4),
+                SCREEN_WIDTH/2 - (square_size * 2),
                 square_size
             )
-        )
+            )
         
-        elif winning == 1
+        elif winner == 1:
             screen.blit(
             pygame.transform.scale( # resize to fit squares
                 pygame.image.load("assets/textures/donut_monster/black_donut_monster_with_trophy.png"), # the images
@@ -200,7 +201,7 @@ def main():
             ),
             ( # pixel location
                 # int(main.SCREEN_WIDTH - (main.square_size * self.x) - ((main.SCREEN_WIDTH - (main.square_size * 8)) / 2)),
-                SCREEN_WIDTH - (square_size * 4),
+                SCREEN_WIDTH/2 - (square_size * 4),
                 square_size
             )
         )
