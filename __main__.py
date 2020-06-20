@@ -182,29 +182,29 @@ def main():
         
         if winner == 0:
             screen.blit(
-            pygame.transform.scale( # resize to fit squares
-                pygame.image.load("assets/textures/donut_monster/red_donut_monster_with_trophy.png"), # the images
-                (square_size * 4, square_size * 8) # image dimensions
-            ),
-            ( # pixel location
-                # int(main.SCREEN_WIDTH - (main.square_size * self.x) - ((main.SCREEN_WIDTH - (main.square_size * 8)) / 2)),
-                SCREEN_WIDTH/2 - (square_size * 2),
-                square_size
-            )
+                pygame.transform.scale( # resize to fit squares
+                    pygame.image.load("assets/textures/donut_monster/red_donut_monster_with_trophy.png"), # the images
+                    (square_size * 4, square_size * 8) # image dimensions
+                ),
+                ( # pixel location
+                    # int(main.SCREEN_WIDTH - (main.square_size * self.x) - ((main.SCREEN_WIDTH - (main.square_size * 8)) / 2)),
+                    SCREEN_WIDTH / 2 - (square_size * 2),
+                    square_size
+                )
             )
         
         elif winner == 1:
             screen.blit(
-            pygame.transform.scale( # resize to fit squares
-                pygame.image.load("assets/textures/donut_monster/black_donut_monster_with_trophy.png"), # the images
-                (square_size * 4, square_size * 8) # image dimensions
-            ),
-            ( # pixel location
-                # int(main.SCREEN_WIDTH - (main.square_size * self.x) - ((main.SCREEN_WIDTH - (main.square_size * 8)) / 2)),
-                SCREEN_WIDTH/2 - (square_size * 4),
-                square_size
+                pygame.transform.scale( # resize to fit squares
+                    pygame.image.load("assets/textures/donut_monster/black_donut_monster_with_trophy.png"), # the images
+                    (square_size * 4, square_size * 8) # image dimensions
+                ),
+                ( # pixel location
+                    # int(main.SCREEN_WIDTH - (main.square_size * self.x) - ((main.SCREEN_WIDTH - (main.square_size * 8)) / 2)),
+                    SCREEN_WIDTH/2 - (square_size * 4),
+                    square_size
+                )
             )
-        )
         
         # print(f"Ghost piece count: {len(ghost_pieces)}")
 
