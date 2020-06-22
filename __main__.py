@@ -24,6 +24,7 @@ from checkers_classes import square
 from functions import spawn_sprites
 from functions import remove_sprites
 from functions import show_text
+from functions import clamp
 
 user32 = ctypes.windll.user32
 
@@ -95,14 +96,6 @@ jumped_pieces = []
 turn = 1
 winner = 2
 
-def clamp(number, minimum, maximum):
-    val = number
-    if number < minimum:
-        val = minimum
-    if number > maximum:
-        val = maximum
-    return val
-
 def main():
     RUNNING = True # running variable - will be set to false when x is pressed, quitting the program
     game_state = 0
@@ -134,9 +127,9 @@ def main():
         if game_state == 0:
             boring_colour = (200, 200, 200)
             start_colour = (
-                clamp(200 + (ticks % 50 * 2), 0, 255),
-                clamp(200 + (ticks % 50 * 4), 0, 255),
-                clamp(200 + (ticks % 50 * 6), 0, 255)
+                clamp.clamp(200 + (ticks % 50 * 2), 0, 255),
+                clamp.clamp(200 + (ticks % 50 * 4), 0, 255),
+                clamp.clamp(200 + (ticks % 50 * 6), 0, 255)
             )
 
             title_y = SCREEN_HEIGHT // 3
