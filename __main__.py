@@ -23,6 +23,7 @@ from checkers_classes import square
 
 from functions import spawn_sprites
 from functions import remove_sprites
+from functions import show_text
 
 user32 = ctypes.windll.user32
 
@@ -94,16 +95,6 @@ jumped_pieces = []
 turn = 1
 winner = 2
 
-
-def show_text(font_file, font_size, text_colour, coords, string):
-    font = pygame.font.Font(font_file, font_size)
-
-    text = font.render(string, True, text_colour)
-    text_rect = text.get_rect()
-    text_rect.center = (x, y) = coords
-
-    return {"text": text, "rect": text_rect}
-
 def clamp(number, minimum, maximum):
     val = number
     if number < minimum:
@@ -150,10 +141,10 @@ def main():
 
             title_y = SCREEN_HEIGHT // 3
 
-            title = show_text(roboto_bold, 128, boring_colour, (SCREEN_WIDTH // 2, title_y), "Donut Checkers")
-            start = show_text(roboto_bold, 48, start_colour, (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 3 * 2), "Press SPACE to play")
-            exiting = show_text(roboto_bold, 48, boring_colour, (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 3 * 2 + 100), "Press ESC to exit")
-            buttons = show_text(roboto_bold, 48, boring_colour, (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 3 * 2 + 150), "(because I'm too lazy to make buttons)")
+            title = show_text.show_text(roboto_bold, 128, boring_colour, (SCREEN_WIDTH // 2, title_y), "Donut Checkers")
+            start = show_text.show_text(roboto_bold, 48, start_colour, (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 3 * 2), "Press SPACE to play")
+            exiting = show_text.show_text(roboto_bold, 48, boring_colour, (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 3 * 2 + 100), "Press ESC to exit")
+            buttons = show_text.show_text(roboto_bold, 48, boring_colour, (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 3 * 2 + 150), "(because I'm too lazy to make buttons)")
 
             screen.blit(title["text"], title["rect"])
             screen.blit(start["text"], start["rect"])
