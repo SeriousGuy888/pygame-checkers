@@ -22,6 +22,7 @@ from checkers_classes import ghost_piece
 from checkers_classes import square
 
 from functions import spawn_sprites
+from functions import remove_sprites
 
 user32 = ctypes.windll.user32
 
@@ -94,12 +95,6 @@ turn = 1
 winner = 2
 
 
-def remove_sprites():
-    sprites = [pieces, king_pieces, ghost_pieces, squares, jumped_pieces]
-
-    for sprite in sprites:
-        sprite.clear()
-
 def show_text(font_file, font_size, text_colour, coords, string):
     font = pygame.font.Font(font_file, font_size)
 
@@ -141,7 +136,7 @@ def main():
                 if game_state == 1:
                     if event.key == K_ESCAPE:
                         game_state = 0
-                        remove_sprites()
+                        remove_sprites.remove_sprites()
             if event.type == QUIT: # press quit
                 RUNNING = False # kills stuffs :D
 
