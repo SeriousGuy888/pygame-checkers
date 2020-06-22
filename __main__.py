@@ -86,7 +86,8 @@ pieces = []
 king_pieces = []
 ghost_pieces = []
 squares = []
-jumped_pieces = []
+red_jumped_pieces = []
+black_jumped_pieces = []
 
 turn = 1
 winner = 2
@@ -112,7 +113,7 @@ def spawn_sprites():
                     pieces.append(piece.Piece(team, loop_square, False))
 
 def remove_sprites():
-    sprites = [pieces, king_pieces, ghost_pieces, squares, jumped_pieces]
+    sprites = [pieces, king_pieces, ghost_pieces, squares, red_jumped_pieces, black_jumped_pieces]
 
     for sprite in sprites:
         sprite.clear()
@@ -190,6 +191,32 @@ def main():
                     loop_piece.render()
                 for loop_ghost_piece in ghost_pieces: # process all the ghost pieces
                     loop_ghost_piece.render()
+
+                for red_jumped_count in range(len(red_jumped_pieces)):
+                    red_jumped_count += 1
+                    screen.blit(
+                    pygame.transform.scale( # resize to fit squares
+                        pygame.image.load(red_dead_piece_texture_path), # the images
+                        (square_size, square_size) # image dimensions
+                    ),
+                    ( # pixel location
+                        board_x_offset + (-1 - int(red_jumped_count / 9)) * square_size,
+                        (red_jumped_count - ((int(red_jumped_count / 9) * 8))) * square_size
+                    )
+                )
+                for black_jumped_count in range(len(black_jumped_pieces)):
+                    black_jumped_count += 1
+                    screen.blit(
+                    pygame.transform.scale( # resize to fit squares
+                        pygame.image.load(black_dead_piece_texture_path), # the images
+                        (square_size, square_size) # image dimensions
+                    ),
+                    ( # pixel location
+                        board_x_offset + (10 + int(black_jumped_count / 9)) * square_size,
+                        (black_jumped_count - ((int(black_jumped_count / 9) * 8))) * square_size
+                    )
+                )
+
             
 
             # mouse_collide = pygame.sprite.spritecollide
@@ -243,7 +270,7 @@ def main():
                         (square_size * 4, square_size * 8) # image dimensions
                     ),
                     ( # pixel location
-                        int(SCREEN_WIDTH / 2 - (square_size * 4)),
+                        int(SCREEN_WIDTH / 2 - (square_size * 2)),
                         square_size
                     )
                 )

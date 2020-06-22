@@ -49,25 +49,25 @@ class Piece(main.pygame.sprite.Sprite):
             if loop_piece.x == self.x + 1 and loop_piece.y == self.y_move: # checks if there is a piece blocking the path
                 can_move_right = False # makes it not able to move if theres a piece blocking the path
                 # print("you cant shirt box move right")
-                if loop_piece.team != self.team: # if the piece that is blocking the path is on the other team, then
+                if loop_piece.team != self.team and self.x + 2 <= 8 and self.jump_y_move not in [0, 9]: # if the piece that is blocking the path is on the other team, then
                     checking_jumps = loop_piece.can_be_jumped(2, self, self.jump_y_move) # checks if the piece in the path can be jumped
 
             if loop_piece.x == self.x - 1 and loop_piece.y == self.y_move:
                 can_move_left = False # Makes it not able to move if theres a piece blocking the path
                 # print("ytard cant move left")
-                if loop_piece.team != self.team: # If the piece that is blocking the path is on the other team, then
+                if loop_piece.team != self.team and self.x - 2 >= 1 and self.jump_y_move not in [0, 9]: # If the piece that is blocking the path is on the other team, then
                     checking_jumps = loop_piece.can_be_jumped(-2, self, self.jump_y_move) # Checks if the piece in the path can be jumped
 
             if self.kinged and loop_piece.x == self.x + 1 and loop_piece.y == self.backwards_y_move:
                 can_move_back_right = False # Makes it not able to move if theres a piece blocking the path
                 # print("ytard cant move left")
-                if loop_piece.team != self.team: # If the piece that is blocking the path is on the other team, then
+                if loop_piece.team != self.team and self.x + 2 <= 8 and self.backwards_jump_y_move not in [0, 9]: # If the piece that is blocking the path is on the other team, then
                     checking_jumps = loop_piece.can_be_jumped(2, self, self.backwards_jump_y_move) # Checks if the piece in the path can be jumped
 
             if self.kinged and loop_piece.x == self.x - 1 and loop_piece.y == self.backwards_y_move:
                 can_move_back_left = False # Makes it not able to move if theres a piece blocking the path
                 # print("ytard cant move left")
-                if loop_piece.team != self.team: # If the piece that is blocking the path is on the other team, then
+                if loop_piece.team != self.team and self.x - 2 >= 1 and self.backwards_jump_y_move not in [1, 9]: # If the piece that is blocking the path is on the other team, then
                     checking_jumps = loop_piece.can_be_jumped(-2, self, self.backwards_jump_y_move) # Checks if the piece in the path can be jumped
 
         # Draws a ghost piece if they can move right/left

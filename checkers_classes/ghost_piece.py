@@ -17,7 +17,7 @@ class GhostPiece(main.pygame.sprite.Sprite):
         main.ghost_pieces = []
         if self.is_jumping_piece:
             self.ghosted_piece.jump_count = self.ghosted_piece.jump_count + 1
-            main.jumped_pieces.append(self.piece_being_jumped)
+            [main.red_jumped_pieces, main.black_jumped_pieces][self.piece_being_jumped.team].append(self.piece_being_jumped)
             main.pieces.remove(self.piece_being_jumped)
             self.ghosted_piece.move_piece()
             if len(main.pieces) <= 12:
