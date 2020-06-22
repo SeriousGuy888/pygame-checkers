@@ -25,6 +25,7 @@ from functions import spawn_sprites
 from functions import remove_sprites
 from functions import show_text
 from functions import clamp
+from functions import get_directory_files
 
 user32 = ctypes.windll.user32
 
@@ -37,12 +38,6 @@ screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN) # screen size and st
 pygame.display.set_icon(pygame.image.load("./assets/textures/icon.png"))
 pygame.display.set_caption("Donut Checkers")
 
-def get_directory_files(directory, search_pattern):
-    paths = Path(directory).glob(search_pattern)
-    files = []
-    for path in paths:
-        files.append(str(path))
-    return files
 
 def load_sounds_from_files(path_list):
     sounds = []
@@ -78,7 +73,7 @@ red_donut_monster = "./assets/textures/donut_monster/red_donut_monster_with_trop
 black_donut_monster = "./assets/textures/donut_monster/black_donut_monster_with_trophy.png"
 
 
-move_sounds = load_sounds_from_files(get_directory_files("./assets/sfx/move", "*.wav"))
+move_sounds = load_sounds_from_files(get_directory_files.get_directory_files("./assets/sfx/move", "*.wav"))
 
 roboto_bold = "./assets/fonts/Roboto-Bold.ttf"
 
