@@ -155,27 +155,27 @@ def main():
                 for red_jumped_count in range(len(red_jumped_pieces)):
                     red_jumped_count += 1
                     screen.blit(
-                    pygame.transform.scale( # resize to fit squares
-                        pygame.image.load(red_dead_piece_texture_path), # the images
-                        (square_size, square_size) # image dimensions
-                    ),
-                    ( # pixel location
-                        board_x_offset + (-1 - int(red_jumped_count / 9)) * square_size,
-                        (red_jumped_count - ((int(red_jumped_count / 9) * 8))) * square_size
+                        pygame.transform.scale( # resize to fit squares
+                            pygame.image.load(red_dead_piece_texture_path), # the images
+                            (square_size, square_size) # image dimensions
+                        ),
+                        ( # pixel location
+                            board_x_offset + (-1 - int(red_jumped_count / 9)) * square_size,
+                            (red_jumped_count - ((int(red_jumped_count / 9) * 8))) * square_size
+                        )
                     )
-                )
                 for black_jumped_count in range(len(black_jumped_pieces)):
                     black_jumped_count += 1
                     screen.blit(
-                    pygame.transform.scale( # resize to fit squares
-                        pygame.image.load(black_dead_piece_texture_path), # the images
-                        (square_size, square_size) # image dimensions
-                    ),
-                    ( # pixel location
-                        board_x_offset + (10 + int(black_jumped_count / 9)) * square_size,
-                        (black_jumped_count - ((int(black_jumped_count / 9) * 8))) * square_size
+                        pygame.transform.scale( # resize to fit squares
+                            pygame.image.load(black_dead_piece_texture_path), # the images
+                            (square_size, square_size) # image dimensions
+                        ),
+                        ( # pixel location
+                            board_x_offset + (10 + int(black_jumped_count / 9)) * square_size,
+                            (black_jumped_count - ((int(black_jumped_count / 9) * 8))) * square_size
+                        )
                     )
-                )
                 
                 global turn
                 if turn == 0:
