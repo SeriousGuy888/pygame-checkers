@@ -30,42 +30,34 @@ from functions import get_directory_files
 from functions import load_sounds_from_files
 from functions import minimax
 
-user32 = ctypes.windll.user32
+# Pylint warning suppression
+SCREEN_WIDTH = None
+SCREEN_HEIGHT = None
+screen = None
 
-SCREEN_WIDTH = user32.GetSystemMetrics(0)
-SCREEN_HEIGHT = user32.GetSystemMetrics(1)
+pygame.init()
 
-pygame.init() # actual game
-
-screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN) # screen size and stuffs
-pygame.display.set_icon(pygame.image.load("./assets/textures/icon.png"))
-pygame.display.set_caption("Donut Checkers")
-
-
+from init import screen_dimensions
+from init import display_setup
 
 white_square = (209, 168, 107)
 black_square = (135, 89, 19)
 square_size = math.floor(SCREEN_HEIGHT / 10)
 SQUARE_DIMENSION = 8
-
 board_x_offset = int(SCREEN_WIDTH / 2 - (square_size * (SQUARE_DIMENSION / 2 + 1)))
 
 background_image = pygame.image.load("./assets/textures/table.png")
-
 red_piece_texture_path = "./assets/textures/pieces/normal/red_piece.png"
 black_piece_texture_path = "./assets/textures/pieces/normal/black_piece.png"
 red_king_piece_texture_path = "./assets/textures/pieces/normal/king_red_piece.png"
 black_king_piece_texture_path = "./assets/textures/pieces/normal/king_black_piece.png"
 red_dead_piece_texture_path = "./assets/textures/pieces/dead/dead_red_piece.png"
 black_dead_piece_texture_path = "./assets/textures/pieces/dead/dead_black_piece.png"
-
 red_piece_sel_texture_path = "./assets/textures/pieces/selected/sel_red_piece.png"
 black_piece_sel_texture_path = "./assets/textures/pieces/selected/sel_black_piece.png"
 red_king_piece_sel_texture_path = "./assets/textures/pieces/selected/sel_king_red_piece.png"
 black_king_piece_sel_texture_path = "./assets/textures/pieces/selected/sel_king_black_piece.png"
-
 ghost_piece_texture_path = "./assets/textures/pieces/ghost/ghost_piece.png"
-
 red_donut_monster = "./assets/textures/donut_monster/red_donut_monster_with_trophy.png"
 black_donut_monster = "./assets/textures/donut_monster/black_donut_monster_with_trophy.png"
 
@@ -77,8 +69,7 @@ win_sounds = load_sounds_from_files.load_sounds_from_files(get_directory_files.g
 roboto_bold = "./assets/fonts/Roboto-Bold.ttf"
 source_sans_bold = "./assets/fonts/SourceSansPro-Bold.ttf"
 
-# * red down; black up
-
+screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 
 dogshit = ["dog", "shirt", "this is an easter egg that no one will find unless there's dog in 🌈", "hoang", "🐶"]
 
@@ -167,27 +158,27 @@ def main():
                 for red_jumped_count in range(len(red_jumped_pieces)):
                     red_jumped_count += 1
                     screen.blit(
-                    pygame.transform.scale( # resize to fit squares
-                        pygame.image.load(red_dead_piece_texture_path), # the images
-                        (square_size, square_size) # image dimensions
-                    ),
-                    ( # pixel location
-                        board_x_offset + (-1 - int(red_jumped_count / 9)) * square_size,
-                        (red_jumped_count - ((int(red_jumped_count / 9) * 8))) * square_size
+                        pygame.transform.scale( # resize to fit squares
+                            pygame.image.load(red_dead_piece_texture_path), # the images
+                            (square_size, square_size) # image dimensions
+                        ),
+                        ( # pixel location
+                            board_x_offset + (-1 - int(red_jumped_count / 9)) * square_size,
+                            (red_jumped_count - ((int(red_jumped_count / 9) * 8))) * square_size
+                        )
                     )
-                )
                 for black_jumped_count in range(len(black_jumped_pieces)):
                     black_jumped_count += 1
                     screen.blit(
-                    pygame.transform.scale( # resize to fit squares
-                        pygame.image.load(black_dead_piece_texture_path), # the images
-                        (square_size, square_size) # image dimensions
-                    ),
-                    ( # pixel location
-                        board_x_offset + (10 + int(black_jumped_count / 9)) * square_size,
-                        (black_jumped_count - ((int(black_jumped_count / 9) * 8))) * square_size
+                        pygame.transform.scale( # resize to fit squares
+                            pygame.image.load(black_dead_piece_texture_path), # the images
+                            (square_size, square_size) # image dimensions
+                        ),
+                        ( # pixel location
+                            board_x_offset + (10 + int(black_jumped_count / 9)) * square_size,
+                            (black_jumped_count - ((int(black_jumped_count / 9) * 8))) * square_size
+                        )
                     )
-                )
                 
                 if turn == 0:
                     show_turn = show_text.show_text(source_sans_bold, 64, (242, 39, 39), (SCREEN_WIDTH // 2, 0 + (square_size // 2)), "Red Turn")
