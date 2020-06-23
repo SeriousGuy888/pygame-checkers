@@ -30,43 +30,34 @@ from functions import get_directory_files
 from functions import load_sounds_from_files
 from functions import minimax
 
-user32 = ctypes.windll.user32
+# Pylint warning suppression
+SCREEN_WIDTH = None
+SCREEN_HEIGHT = None
+screen = None
 
-SCREEN_WIDTH = user32.GetSystemMetrics(0)
-SCREEN_HEIGHT = user32.GetSystemMetrics(1)
+pygame.init()
 
-pygame.init() # actual game
-
-app_id = "cheezydevs.donutcheckers"
-ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(app_id)
-pygame.display.set_icon(pygame.image.load("./assets/textures/icon.png"))
-pygame.display.set_caption("Donut Checkers")
-
-screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN) # screen size and stuffs
+from init import screen_dimensions
+from init import display_setup
 
 white_square = (209, 168, 107)
 black_square = (135, 89, 19)
 square_size = math.floor(SCREEN_HEIGHT / 10)
 SQUARE_DIMENSION = 8
-
 board_x_offset = int(SCREEN_WIDTH / 2 - (square_size * (SQUARE_DIMENSION / 2 + 1)))
 
 background_image = pygame.image.load("./assets/textures/table.png")
-
 red_piece_texture_path = "./assets/textures/pieces/normal/red_piece.png"
 black_piece_texture_path = "./assets/textures/pieces/normal/black_piece.png"
 red_king_piece_texture_path = "./assets/textures/pieces/normal/king_red_piece.png"
 black_king_piece_texture_path = "./assets/textures/pieces/normal/king_black_piece.png"
 red_dead_piece_texture_path = "./assets/textures/pieces/dead/dead_red_piece.png"
 black_dead_piece_texture_path = "./assets/textures/pieces/dead/dead_black_piece.png"
-
 red_piece_sel_texture_path = "./assets/textures/pieces/selected/sel_red_piece.png"
 black_piece_sel_texture_path = "./assets/textures/pieces/selected/sel_black_piece.png"
 red_king_piece_sel_texture_path = "./assets/textures/pieces/selected/sel_king_red_piece.png"
 black_king_piece_sel_texture_path = "./assets/textures/pieces/selected/sel_king_black_piece.png"
-
 ghost_piece_texture_path = "./assets/textures/pieces/ghost/ghost_piece.png"
-
 red_donut_monster = "./assets/textures/donut_monster/red_donut_monster_with_trophy.png"
 black_donut_monster = "./assets/textures/donut_monster/black_donut_monster_with_trophy.png"
 
@@ -78,8 +69,7 @@ win_sounds = load_sounds_from_files.load_sounds_from_files(get_directory_files.g
 roboto_bold = "./assets/fonts/Roboto-Bold.ttf"
 source_sans_bold = "./assets/fonts/SourceSansPro-Bold.ttf"
 
-# * red down; black up
-
+screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 
 dogshit = ["dog", "shirt", "this is an easter egg that no one will find unless there's dog in 🌈", "hoang", "🐶"]
 
