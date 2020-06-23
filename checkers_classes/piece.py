@@ -22,8 +22,8 @@ class Piece(main.pygame.sprite.Sprite):
         self.kinged = False
         self.ai = main.one_player and self.team == 0
         self.image, self.rect = img, img
-        the_screen = main.pygame.display.get_surface() # get the screen variable i think
-        self.area = the_screen.get_rect()
+        screen = main.pygame.display.get_surface() # get the screen variable i think
+        self.area = screen.get_rect()
     def is_clicked(self):
         return main.pygame.mouse.get_pressed()[0] and self.rect.collidepoint(main.pygame.mouse.get_pos())
 
