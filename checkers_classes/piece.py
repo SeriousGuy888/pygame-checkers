@@ -61,13 +61,11 @@ class Piece(main.pygame.sprite.Sprite):
 
             if self.kinged and loop_piece.x == self.x + 1 and loop_piece.y == self.backwards_y_move:
                 can_move_back_right = False # Makes it not able to move if theres a piece blocking the path
-                # print("ytard cant move left")
                 if loop_piece.team != self.team and self.x + 2 <= 8 and self.backwards_jump_y_move not in [0, 9]: # If the piece that is blocking the path is on the other team, then
                     checking_jumps = loop_piece.can_be_jumped(2, self, self.backwards_jump_y_move) # Checks if the piece in the path can be jumped
 
             if self.kinged and loop_piece.x == self.x - 1 and loop_piece.y == self.backwards_y_move:
                 can_move_back_left = False # Makes it not able to move if theres a piece blocking the path
-                # print("ytard cant move left")
                 if loop_piece.team != self.team and self.x - 2 >= 1 and self.backwards_jump_y_move not in [1, 9]: # If the piece that is blocking the path is on the other team, then
                     checking_jumps = loop_piece.can_be_jumped(-2, self, self.backwards_jump_y_move) # Checks if the piece in the path can be jumped
 
@@ -76,42 +74,27 @@ class Piece(main.pygame.sprite.Sprite):
         if can_move_right and self.jump_count < 1:
             for loop_square in main.squares:
                 if loop_square.x == self.x + 1 and loop_square.y == self.y_move:
-                    # print("x = " + str(loop_square.x))
-                    # print("y = " + str(loop_square.y))
                     main.ghost_pieces.append(main.ghost_piece.GhostPiece(loop_square, self, False, False))
         
         if can_move_left and self.jump_count < 1:
             for loop_square in main.squares:
                 if loop_square.x == self.x - 1 and loop_square.y == self.y_move:
-                    # print("x = " + str(loop_square.x))
-                    # print("y = " + str(loop_square.y))
                     main.ghost_pieces.append(main.ghost_piece.GhostPiece(loop_square, self, False, False))
         
         if can_move_back_right and self.jump_count < 1:
             for loop_square in main.squares:
                 if loop_square.x == self.x + 1 and loop_square.y == self.backwards_y_move:
-                    # print("x = " + str(loop_square.x))
-                    # print("y = " + str(loop_square.y))
                     main.ghost_pieces.append(main.ghost_piece.GhostPiece(loop_square, self, False, False))
         
         if can_move_back_left and self.jump_count < 1:
             for loop_square in main.squares:
                 if loop_square.x == self.x - 1 and loop_square.y == self.backwards_y_move:
-                    # print("x = " + str(loop_square.x))
-                    # print("y = " + str(loop_square.y))
                     main.ghost_pieces.append(main.ghost_piece.GhostPiece(loop_square, self, False, False))
-        
-#         print(self.jump_count)
-#         print(checking_jumps)
         
         if self.jump_count > 0 and not checking_jumps:
             self.jump_count = 0
             main.turn = [1, 0][self.team]
-#             print("not my move anymore")
             self.selected = False
-        
-#         print(self.selected)
-        # self.selected = self.team == main.turn
 
     def can_be_jumped(self, x_direction, jumper, jumper_jump_y_move):
         can_jump = True # Set the default to it being able to be jumped
@@ -119,13 +102,11 @@ class Piece(main.pygame.sprite.Sprite):
             for loop_piece in main.pieces: # Check each piece
                 if loop_piece.x == self.x + 1 and loop_piece.y == jumper_jump_y_move: # If there's a piece blocking the jump
                     can_jump = False # It can't be jumped
-                    # print("cant be jumped right") # This was for debugging and I might delete it
 
         if x_direction == -2: # Same as above but for jumping to the left
             for loop_piece in main.pieces:
                 if loop_piece.x == self.x - 1 and loop_piece.y == jumper_jump_y_move:
                     can_jump = False
-                    # print("cant be jumped left")
 
         if can_jump:
             for loop_square in main.squares:
