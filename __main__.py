@@ -28,6 +28,7 @@ from functions import show_text
 from functions import clamp
 from functions import get_directory_files
 from functions import load_sounds_from_files
+from functions import minimax
 
 user32 = ctypes.windll.user32
 
@@ -70,6 +71,7 @@ black_donut_monster = "./assets/textures/donut_monster/black_donut_monster_with_
 
 
 move_sounds = load_sounds_from_files.load_sounds_from_files(get_directory_files.get_directory_files("./assets/sfx/move", "*.wav"))
+king_sounds = load_sounds_from_files.load_sounds_from_files(get_directory_files.get_directory_files("./assets/sfx/king", "*.wav"))
 
 roboto_bold = "./assets/fonts/Roboto-Bold.ttf"
 source_sans_bold = "./assets/fonts/SourceSansPro-Bold.ttf"
@@ -77,7 +79,7 @@ source_sans_bold = "./assets/fonts/SourceSansPro-Bold.ttf"
 # * red down; black up
 
 
-dogshit = ["dog", "shirt", "this is an easter egg that no one will find unless there's dog in 🌈"]
+dogshit = ["dog", "shirt", "this is an easter egg that no one will find unless there's dog in 🌈", "hoang", "🐶"]
 
 pieces = []
 king_pieces = []
@@ -87,7 +89,7 @@ red_jumped_pieces = []
 black_jumped_pieces = []
 
 turn = 1
-winner = 2
+winner = -1
 
 one_player = False
 
@@ -222,22 +224,13 @@ def main():
 
             # pieces[3].move_piece()
             
-            if winner == 0:
+            if winner in (0, 1):
+                img = "assets/textures/donut_monster/red_donut_monster_with_trophy.png" if winner == 0 else "assets/textures/donut_monster/black_donut_monster_with_trophy.png"
+                # img = "assets/textures/donut_monster/black_donut_monster_with_trophy.png" if winner == 1
+
                 screen.blit(
                     pygame.transform.scale( # resize to fit squares
-                        pygame.image.load("assets/textures/donut_monster/red_donut_monster_with_trophy.png"), # the images
-                        (square_size * 4, square_size * 8) # image dimensions
-                    ),
-                    ( # pixel location
-                        int(SCREEN_WIDTH / 2 - (square_size * 2)),
-                        square_size
-                    )
-                )
-            
-            elif winner == 1:
-                screen.blit(
-                    pygame.transform.scale( # resize to fit squares
-                        pygame.image.load("assets/textures/donut_monster/black_donut_monster_with_trophy.png"), # the images
+                        pygame.image.load(img), # the images
                         (square_size * 4, square_size * 8) # image dimensions
                     ),
                     ( # pixel location
