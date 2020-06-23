@@ -37,11 +37,12 @@ SCREEN_HEIGHT = user32.GetSystemMetrics(1)
 
 pygame.init() # actual game
 
-screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN) # screen size and stuffs
+app_id = "cheezydevs.donutcheckers"
+ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(app_id)
 pygame.display.set_icon(pygame.image.load("./assets/textures/icon.png"))
 pygame.display.set_caption("Donut Checkers")
 
-
+screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN) # screen size and stuffs
 
 white_square = (209, 168, 107)
 black_square = (135, 89, 19)
