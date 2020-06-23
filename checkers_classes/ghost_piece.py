@@ -37,7 +37,8 @@ class GhostPiece(main.pygame.sprite.Sprite):
             self.ghosted_piece.selected = False
             main.turn = [1, 0][self.ghosted_piece.team]
             
-        if [8,1][self.ghosted_piece.team] == self.ghosted_piece.y:
+        if [8, 1][self.ghosted_piece.team] == self.ghosted_piece.y:
+            main.pygame.mixer.Sound.play(main.random.choice(main.king_sounds))
             self.ghosted_piece.kinged = True
             self.ghosted_piece.image = [main.red_king_piece_texture_path, main.black_king_piece_texture_path][self.ghosted_piece.team]
 

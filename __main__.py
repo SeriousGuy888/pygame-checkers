@@ -70,6 +70,7 @@ black_donut_monster = "./assets/textures/donut_monster/black_donut_monster_with_
 
 
 move_sounds = load_sounds_from_files.load_sounds_from_files(get_directory_files.get_directory_files("./assets/sfx/move", "*.wav"))
+king_sounds = load_sounds_from_files.load_sounds_from_files(get_directory_files.get_directory_files("./assets/sfx/king", "*.wav"))
 
 roboto_bold = "./assets/fonts/Roboto-Bold.ttf"
 
