@@ -101,6 +101,8 @@ def main():
     win_sound_played = False
 
     while RUNNING: # main game loop
+        global turn
+        global one_player
         pygame.display.update()
         pygame.display.flip() # display the display to the display
 
@@ -125,6 +127,7 @@ def main():
                     if event.key == K_ESCAPE:
                         game_state = 0
                         remove_sprites.remove_sprites()
+                        turn = 1
                         win_sound_played = False
             if event.type == QUIT: # press quit
                 RUNNING = False # kills stuffs :D
@@ -186,7 +189,6 @@ def main():
                     )
                 )
                 
-                global turn
                 if turn == 0:
                     show_turn = show_text.show_text(source_sans_bold, 64, (242, 39, 39), (SCREEN_WIDTH // 2, 0 + (square_size // 2)), "Red Turn")
                 if turn == 1:
