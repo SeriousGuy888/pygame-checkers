@@ -72,6 +72,7 @@ black_donut_monster = "./assets/textures/donut_monster/black_donut_monster_with_
 
 move_sounds = load_sounds_from_files.load_sounds_from_files(get_directory_files.get_directory_files("./assets/sfx/move", "*.wav"))
 king_sounds = load_sounds_from_files.load_sounds_from_files(get_directory_files.get_directory_files("./assets/sfx/king", "*.wav"))
+win_sounds = load_sounds_from_files.load_sounds_from_files(get_directory_files.get_directory_files("./assets/sfx/win", "*.wav"))
 
 roboto_bold = "./assets/fonts/Roboto-Bold.ttf"
 source_sans_bold = "./assets/fonts/SourceSansPro-Bold.ttf"
@@ -97,6 +98,7 @@ def main():
     RUNNING = True # running variable - will be set to false when x is pressed, quitting the program
     game_state = 0
     ticks = 0
+    win_sound_played = False
 
     while RUNNING: # main game loop
         pygame.display.update()
@@ -123,6 +125,7 @@ def main():
                     if event.key == K_ESCAPE:
                         game_state = 0
                         remove_sprites.remove_sprites()
+                        win_sound_played = False
             if event.type == QUIT: # press quit
                 RUNNING = False # kills stuffs :D
 
@@ -227,6 +230,9 @@ def main():
             if winner in (0, 1):
                 img = "assets/textures/donut_monster/red_donut_monster_with_trophy.png" if winner == 0 else "assets/textures/donut_monster/black_donut_monster_with_trophy.png"
                 # img = "assets/textures/donut_monster/black_donut_monster_with_trophy.png" if winner == 1
+                if not win_sound_played:
+                    pygame.mixer.Sound.play(random.choice(win_sounds))
+                    win_sound_played = True
 
                 screen.blit(
                     pygame.transform.scale( # resize to fit squares
