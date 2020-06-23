@@ -205,22 +205,13 @@ def main():
 
             # pieces[3].move_piece()
             
-            if winner == 0:
+            if winner in (0, 1):
+                img = "assets/textures/donut_monster/red_donut_monster_with_trophy.png" if winner == 0 else "assets/textures/donut_monster/black_donut_monster_with_trophy.png"
+                # img = "assets/textures/donut_monster/black_donut_monster_with_trophy.png" if winner == 1
+
                 screen.blit(
                     pygame.transform.scale( # resize to fit squares
-                        pygame.image.load("assets/textures/donut_monster/red_donut_monster_with_trophy.png"), # the images
-                        (square_size * 4, square_size * 8) # image dimensions
-                    ),
-                    ( # pixel location
-                        int(SCREEN_WIDTH / 2 - (square_size * 2)),
-                        square_size
-                    )
-                )
-            
-            elif winner == 1:
-                screen.blit(
-                    pygame.transform.scale( # resize to fit squares
-                        pygame.image.load("assets/textures/donut_monster/black_donut_monster_with_trophy.png"), # the images
+                        pygame.image.load(img), # the images
                         (square_size * 4, square_size * 8) # image dimensions
                     ),
                     ( # pixel location
