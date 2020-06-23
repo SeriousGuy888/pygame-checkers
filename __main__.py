@@ -1,4 +1,3 @@
-
 import sys
 import ctypes
 import math
@@ -11,6 +10,8 @@ from pygame import mixer
 from pygame.locals import (
     K_ESCAPE,
     K_SPACE,
+    K_1,
+    K_2,
     KEYDOWN,
     QUIT,
     MOUSEBUTTONDOWN,
@@ -74,6 +75,7 @@ king_sounds = load_sounds_from_files.load_sounds_from_files(get_directory_files.
 win_sounds = load_sounds_from_files.load_sounds_from_files(get_directory_files.get_directory_files("./assets/sfx/win", "*.wav"))
 
 roboto_bold = "./assets/fonts/Roboto-Bold.ttf"
+source_sans_bold = "./assets/fonts/SourceSansPro-Bold.ttf"
 
 # * red down; black up
 
@@ -89,6 +91,8 @@ black_jumped_pieces = []
 
 turn = 1
 winner = -1
+
+one_player = False
 
 def main():
     RUNNING = True # running variable - will be set to false when x is pressed, quitting the program
@@ -112,6 +116,11 @@ def main():
                         spawn_sprites.spawn_sprites()
                     if event.key == K_ESCAPE:
                         RUNNING = False
+                    if event.key == K_1:
+                        one_player = True
+                    if event.key == K_2:
+                        one_player = False
+
                 if game_state == 1:
                     if event.key == K_ESCAPE:
                         game_state = 0
@@ -122,6 +131,7 @@ def main():
 
         if game_state == 0:
             boring_colour = (200, 200, 200)
+            other_colour = (225, 225, 225)
             start_colour = (
                 clamp.clamp(200 + (ticks % 50 * 2), 0, 255),
                 clamp.clamp(200 + (ticks % 50 * 4), 0, 255),
@@ -131,11 +141,13 @@ def main():
             title_y = SCREEN_HEIGHT // 3
 
             title = show_text.show_text(roboto_bold, 128, boring_colour, (SCREEN_WIDTH // 2, title_y), "Donut Checkers")
+            player_amount = show_text.show_text(roboto_bold, 64, other_colour, (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 3 * 2 - 100), "Press 1 for one player and 2 for two player")
             start = show_text.show_text(roboto_bold, 48, start_colour, (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 3 * 2), "Press SPACE to play")
             exiting = show_text.show_text(roboto_bold, 48, boring_colour, (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 3 * 2 + 100), "Press ESC to exit")
             buttons = show_text.show_text(roboto_bold, 48, boring_colour, (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 3 * 2 + 150), "(because I'm too lazy to make buttons)")
 
             screen.blit(title["text"], title["rect"])
+            screen.blit(player_amount["text"], player_amount["rect"])            
             screen.blit(start["text"], start["rect"])
             screen.blit(exiting["text"], exiting["rect"])
             screen.blit(buttons["text"], buttons["rect"])
@@ -173,8 +185,16 @@ def main():
                         (black_jumped_count - ((int(black_jumped_count / 9) * 8))) * square_size
                     )
                 )
-
+                
+                global turn
+                if turn == 0:
+                    show_turn = show_text.show_text(source_sans_bold, 64, (242, 39, 39), (SCREEN_WIDTH // 2, 0 + (square_size // 2)), "Red Turn")
+                if turn == 1:
+                    show_turn = show_text.show_text(source_sans_bold, 64, (20, 20, 20), (SCREEN_WIDTH // 2, 0 + (square_size // 2)), "Black Turn")
             
+                screen.blit(show_turn["text"], show_turn["rect"])
+
+                            
 
             # mouse_collide = pygame.sprite.spritecollide
             mouse_pos = pygame.mouse.get_pos()
@@ -183,7 +203,6 @@ def main():
 
 
             if mouse_pressed[0]:
-                global turn
                 for loop_piece in pieces:
                     if(
                         loop_piece.x * square_size + board_x_offset < mouse_pos_x and
