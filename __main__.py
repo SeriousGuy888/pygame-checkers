@@ -27,6 +27,7 @@ from functions import show_text
 from functions import clamp
 from functions import get_directory_files
 from functions import load_sounds_from_files
+from functions import minimax
 
 user32 = ctypes.windll.user32
 
@@ -75,7 +76,7 @@ roboto_bold = "./assets/fonts/Roboto-Bold.ttf"
 # * red down; black up
 
 
-dogshit = ["dog", "shirt", "this is an easter egg that no one will find unless there's dog in 🌈"]
+dogshit = ["dog", "shirt", "this is an easter egg that no one will find unless there's dog in 🌈", "hoang", "🐶"]
 
 pieces = []
 king_pieces = []
@@ -85,7 +86,7 @@ red_jumped_pieces = []
 black_jumped_pieces = []
 
 turn = 1
-winner = 2
+winner = -1
 
 def main():
     RUNNING = True # running variable - will be set to false when x is pressed, quitting the program
