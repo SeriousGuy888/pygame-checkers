@@ -66,8 +66,14 @@ class Piece(main.pygame.sprite.Sprite):
                 if loop_piece.team != self.team and self.x - 2 >= 1 and self.backwards_jump_y_move not in [0, 9]: # If the piece that is blocking the path is on the other team, then
                     checking_jumps = loop_piece.can_be_jumped(-2, self, self.backwards_jump_y_move) # Checks if the piece in the path can be jumped
 
-
-
+        self.add_ghost_pieces(can_move_right, can_move_left, can_move_back_right, can_move_back_left)
+        
+        if self.jump_count > 0 and not checking_jumps: # if it can't jump anymore
+            self.jump_count = 0
+            main.turn = [1, 0][self.team]
+            self.selected = False
+    
+    def add_ghost_pieces(self, can_move_right, can_move_left, can_move_back_right, can_move_back_left):
         if can_move_right and self.jump_count < 1: # if it can move right and it hasnt jumped
             for loop_square in main.squares: # finds the square that it's moving to
                 if loop_square.x == self.x + 1 and loop_square.y == self.y_move:
@@ -87,11 +93,6 @@ class Piece(main.pygame.sprite.Sprite):
             for loop_square in main.squares:
                 if loop_square.x == self.x - 1 and loop_square.y == self.backwards_y_move:
                     main.ghost_pieces.append(main.ghost_piece.GhostPiece(loop_square, self, False, False))
-        
-        if self.jump_count > 0 and not checking_jumps: # if it can't jump anymore
-            self.jump_count = 0
-            main.turn = [1, 0][self.team]
-            self.selected = False
         
 
     def can_be_jumped(self, x_direction, jumper, jumper_jump_y_move):
