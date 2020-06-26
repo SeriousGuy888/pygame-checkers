@@ -2,7 +2,7 @@ import __main__ as main
 
 # position will be the value of the position
 def minimax(position, depth, alpha, beta, maximizing_player):
-    print(position, depth, alpha, beta, maximizing_player)
+    # print(position, depth, alpha, beta, maximizing_player)
     if depth == 0 or main.winner in (0, 1):
         for loop_piece in main.pieces:
             print(loop_piece.move_piece(ai_player=True))

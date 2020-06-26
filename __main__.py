@@ -107,7 +107,7 @@ def main():
                     if event.key == K_SPACE:
                         game_state = 1
                         spawn_sprites.spawn_sprites()
-                        minimax.minimax(pieces, 0, 1, 1, False)
+                        minimax.minimax(pieces, 1, 1, 1, False)
                     if event.key == K_ESCAPE:
                         RUNNING = False
                     if event.key == K_1:
