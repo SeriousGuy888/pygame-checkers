@@ -25,7 +25,7 @@ class Piece(main.pygame.sprite.Sprite):
         the_screen = main.pygame.display.get_surface() # get the screen variable i think
         self.area = the_screen.get_rect()
 
-    def move_piece(self):
+    def move_piece(self, ai_player=False):
         # updates the y_moves
         self.y_move = self.y + (1 - (self.team * 2))
         self.jump_y_move = self.y_move + (1 - (self.team * 2))
@@ -65,13 +65,16 @@ class Piece(main.pygame.sprite.Sprite):
                 can_move_back_left = False # Makes it not able to move if theres a piece blocking the path
                 if loop_piece.team != self.team and self.x - 2 >= 1 and self.backwards_jump_y_move not in [0, 9]: # If the piece that is blocking the path is on the other team, then
                     checking_jumps = loop_piece.can_be_jumped(-2, self, self.backwards_jump_y_move) # Checks if the piece in the path can be jumped
-
-        self.add_ghost_pieces(can_move_right, can_move_left, can_move_back_right, can_move_back_left)
         
-        if self.jump_count > 0 and not checking_jumps: # if it can't jump anymore
-            self.jump_count = 0
-            main.turn = [1, 0][self.team]
-            self.selected = False
+        if not ai_player:
+            self.add_ghost_pieces(can_move_right, can_move_left, can_move_back_right, can_move_back_left)
+        
+            if self.jump_count > 0 and not checking_jumps: # if it can't jump anymore
+                self.jump_count = 0
+                main.turn = [1, 0][self.team]
+                self.selected = False
+        elif ai_player:
+            return main.pieces
     
     def add_ghost_pieces(self, can_move_right, can_move_left, can_move_back_right, can_move_back_left):
         if can_move_right and self.jump_count < 1: # if it can move right and it hasnt jumped
