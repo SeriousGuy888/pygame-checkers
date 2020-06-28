@@ -136,16 +136,16 @@ def main():
             title_y = SCREEN_HEIGHT // 3
 
             title = show_text.show_text(roboto_bold, 128, boring_colour, (SCREEN_WIDTH // 2, title_y), "Donut Checkers")
-            player_amount = show_text.show_text(roboto_bold, 64, other_colour, (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 3 * 2 - 100), "1: Singleplayer | 2: Multiplayer")
+            # player_amount = show_text.show_text(roboto_bold, 64, other_colour, (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 3 * 2 - 100), "1: Singleplayer | 2: Multiplayer")
             start = show_text.show_text(roboto_bold, 48, start_colour, (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 3 * 2), "Press SPACE to play")
             exiting = show_text.show_text(roboto_bold, 48, boring_colour, (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 3 * 2 + 100), "Press ESC to exit")
-            buttons = show_text.show_text(roboto_bold, 48, boring_colour, (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 3 * 2 + 150), "(because I'm too lazy to make buttons)")
+            # buttons = show_text.show_text(roboto_bold, 48, boring_colour, (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 3 * 2 + 150), "(because I'm too lazy to make buttons)")
 
             screen.blit(title["text"], title["rect"])
-            screen.blit(player_amount["text"], player_amount["rect"])            
+            # screen.blit(player_amount["text"], player_amount["rect"])            
             screen.blit(start["text"], start["rect"])
             screen.blit(exiting["text"], exiting["rect"])
-            screen.blit(buttons["text"], buttons["rect"])
+            # screen.blit(buttons["text"], buttons["rect"])
         if game_state == 1:
             for loop_square in squares: # process all the squares
                 loop_square.render()
