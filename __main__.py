@@ -71,7 +71,7 @@ source_sans_bold = "./assets/fonts/SourceSansPro-Bold.ttf"
 
 screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 
-dogshit = ["dog", "shirt", "this is an easter egg that no one will find unless there's dog in 🌈", "hoang", "🐶"]
+dogshit = ["dog", "shirt", "this is an easter egg that no one will find unless there's dog in 🌈", "honag", "🐶"]
 
 pieces = []
 king_pieces = []
